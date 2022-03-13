@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width" />
+	<meta name="color-scheme" content="dark light" />
+	<meta name="robots" content="all" />
+	<meta name="theme-color" content="black" />
+	<meta name="description" content="The website of Benjamin Aster" />
+
+	<base href="/home/" />
+
+	<link rel="icon" href="/media/favicon.svg" />
+	<link rel="stylesheet" href="./style.css" />
+
+	<script type="module" src="./script.js"></script>
+	<link rel="modulepreload" href="./projects.js" />
+
+	<title>Benjamin Aster</title>
+</head>
+
+<body>
+	<noscript>
+		Please enable JavaScript to view this site.
+		<hr />
+	</noscript>
+
+	<main>
+		<section aria-label="About me" class="about-me">
+			<h1>Hi, I'm Benjamin Aster.</h1>
+
+			<p>
+				I'm a 16 year old nerd doing silly things on the computer.
+			</p>
+		</section>
+
+		<address aria-label="Contact and social media" class="contact">
+			<ul>
+				<li><a href="https://github.com/BenjaminAster" class="github">GitHub</a></li>
+				<li><a href="https://twitter.com/Benjamin_Aster" class="twitter">Twitter</a></li>
+				<li><button class="email" aria-label="Click to reveal email address">
+					<span>Email</span>
+					<a hidden href="#"></a>
+				</button></li>
+			</ul>
+		</address>
+
+		<section aria-label="Projects" class="projects">
+			<h2>Projects:</h2>
+
+			<ul>
+				<template>
+					<li class="invisible">
+						<a>
+							<img />
+							<h3 class="title">&nbsp;</h3>
+							<p class="description">&nbsp;</p>
+						</a>
+					</li>
+				</template>
+			</ul>
+		</section>
+	</main>
+</body>
+
+</html>

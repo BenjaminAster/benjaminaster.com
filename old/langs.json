@@ -1,0 +1,90 @@
+{
+	"heading": {
+		"mainHeading": {
+			"en": "Hello, I'm Benjamin Aster",
+			"de": "Hallo, ich bin Benjamin Aster"
+		},
+		"paragraph1": {
+			"en": "Welcome to my personal website",
+			"de": "Willkommen auf meiner persönlichen Website"
+		}
+	},
+	"thingsIveMade": {
+		"en": "Things I've made:",
+		"de": "Sachen, die ich gemacht habe:"
+	},
+	"unorderedListThings": {
+		"copyQuizlet": {
+			"en": "Quizlet Learnset Copier Tool",
+			"de": "Quizlet Lernset Kopierer Tool"
+		},
+		"pong": {
+			"en": "Pong (Game)",
+			"de": "Pong (Spiel)"
+		},
+		"tetris": {
+			"en": "Tetris (Game)",
+			"de": "Tetris (Spiel)"
+		},
+		"snake": {
+			"en": "Snake (Game)",
+			"de": "Snake (Spiel)"
+		},
+		"2048": {
+			"en": "2048 (Game)",
+			"de": "2048 (Spiel)"
+		},
+		"mandelbrot": {
+			"en": "Mandelbrot visualisation",
+			"de": "Mandelbrot Visualisierung"
+		},
+		"ytAdToLink": {
+			"en": "YouTube-ad to video link tool",
+			"de": "YouTube-Werbung zu Video-Link Tool"
+		},
+		"dominoBuilder": {
+			"en": "Domino structure builder",
+			"de": "Domino Strukturen Builder"
+		},
+		"pascalTriangle": {
+			"en": "Sierpinski triangle in the Pascal triangle visualisation",
+			"de": "Sierpinski-Dreieck im Pascal-Dreieck Visualisierung"
+		},
+		"takeAwayTriangles": {
+			"en": "Matt Parker's Math Puzzle 9: Take away triangles",
+			"de": "Matt Parker's Math Puzzle 9: Take away triangles"
+		},
+		"anaglyphCube": {
+			"en": "red-cyan-3D anaglyph spinning cube",
+			"de": "sich drehender Würfel in Rot-Cyan-anaglyph-3D"
+		},
+		"gameOfLife": {
+			"en": "Conway's game of life",
+			"de": "Conways Spiel des Lebens"
+		}
+	},
+	"languageSelectLabel": {
+		"en": "Language:",
+		"de": "Sprache:"
+	},
+	"language-de": {
+		"en": "Deutsch",
+		"de": "Deutsch"
+	},
+	"language-en": {
+		"en": "English",
+		"de": "English"
+	},
+	"copyright2020": {
+		"en": "© 2021 Benjamin Aster",
+		"de": "© 2021 Benjamin Aster"
+	},
+	"contact": {
+		"en": "Contact",
+		"de": "Kontakt"
+	},
+	"docTitle": {
+		"en": "Benjamin Aster's Website",
+		"de": "Benjamin Asters Webseite"
+	}
+}

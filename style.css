@@ -1,0 +1,286 @@
+:root {
+	--transparent-background: #0008;
+	--transparent-background-no-backdrop-filter: #111c;
+	--shadow-color: #000a;
+
+	--scrollbar-start-color: tomato;
+	--scrollbar-end-color: orange;
+	scrollbar-color: var(--scrollbar-start-color) transparent;
+
+	overflow: hidden;
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--transparent-background: #fff6;
+		--transparent-background-no-backdrop-filter: #fffc;
+		--shadow-color: #0005;
+	}
+}
+
+@supports not ((backdrop-filter: none) or (-webkit-backdrop-filter: none)) {
+	:root {
+		--transparent-background: var(--transparent-background-no-backdrop-filter);
+	}
+}
+
+body {
+	margin: 0;
+	font-family: system-ui;
+	box-sizing: border-box;
+
+	position: fixed;
+	inset: 0;
+	overflow-x: hidden;
+
+	--gradient: linear-gradient(to bottom right, lightSkyBlue, slateBlue);
+	background-image: var(--background-image, var(--gradient));
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-color: slateBlue;
+}
+
+main {
+	padding-block: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+/* Arabic (ar), Hebrew (iw), Pashto (ps), Persian (fa), Sindhi (sd), Urdu (ur), Uyghur (ug), Yiddish (yi) */
+:root:is(:lang(ar), :lang(iw), :lang(ps), :lang(fa), :lang(sd), :lang(ur), :lang(ug), :lang(yi)) {
+	direction: rtl;
+}
+
+:where(p, h1, h2, h3, h4, h5, h6) {
+	margin-block: 0;
+}
+
+button {
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+}
+
+:where(.about-me, .contact ul li, .projects ul li, .projects h2) {
+	--backdrop-filter: blur(0.5rem);
+	-webkit-backdrop-filter: var(--backdrop-filter);
+	backdrop-filter: var(--backdrop-filter);
+	box-shadow: 0 0.15rem 1.5rem var(--shadow-color);
+	border-radius: 1rem;
+	background-color: var(--transparent-background);
+}
+
+.about-me {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+	padding: 1rem 1.3rem;
+	margin-inline: 1rem;
+	inline-size: fit-content;
+}
+
+.contact {
+	font-style: normal;
+	padding-inline: 1rem;
+}
+
+.contact ul {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	list-style: none;
+}
+
+.contact ul li > :is(a, button) {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+	padding: 0.8rem 1rem;
+	color: inherit;
+	text-decoration: none;
+	border-radius: 0.4rem;
+}
+
+.contact ul li > :is(a, button)::before {
+	content: "";
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-size: contain;
+	mask-size: contain;
+	-webkit-mask-image: var(--mask-image);
+	mask-image: var(--mask-image);
+	display: inline-block;
+	block-size: 1.3rem;
+	aspect-ratio: 1;
+	background-color: currentColor;
+}
+
+.contact ul li .twitter::before {
+	--mask-image: url("https://abs.twimg.com/responsive-web/client-web/icon-svg.168b89d5.svg");
+}
+
+.contact ul li .github::before {
+	--mask-image: url("https://github.githubassets.com/pinned-octocat.svg");
+}
+
+.contact ul li .email::before {
+	--mask-image: url("https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/outline/mail.svg");
+}
+
+.projects {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	box-sizing: border-box;
+	min-block-size: 100vh;
+	position: relative;
+}
+
+.projects h2 {
+	padding: 0.5rem 0.8rem;
+	inline-size: fit-content;
+	border-radius: 0 1rem 1rem 0;
+}
+
+.projects ul {
+	margin: 0;
+	padding-inline: 1rem;
+	list-style: none;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+	gap: 1.5rem;
+}
+
+.projects ul li {
+	transition: opacity 0.3s, transform 0.1s;
+}
+
+.projects ul li:hover {
+	transform: scale(105%);
+}
+
+.projects ul li.invisible {
+	opacity: 0;
+	transform: translateY(2rem);
+}
+
+.projects ul li a {
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
+	padding: 0.8rem;
+	block-size: 100%;
+	box-sizing: border-box;
+
+	color: inherit;
+	text-decoration: none;
+}
+
+.projects ul li a::after {
+	content: "";
+	/* margin: 0.3rem 1.5rem; */
+	margin-block: 0.3rem;
+	block-size: 2px;
+	/* border-radius: 1px; */
+	background-image: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+	--mask-image: linear-gradient(to right, transparent, black 30% 70%, transparent);
+	-webkit-mask-image: var(--mask-image);
+	mask-image: var(--mask-image);
+
+	--gradient-color-0: tomato;
+	--gradient-color-1: yellow;
+	--gradient-color-2: lime;
+	--gradient-color-3: cyan;
+	--gradient-color-4: dodgerBlue;
+	--gradient-color-5: magenta;
+}
+
+.projects ul li:nth-of-type(6n + 1) a::after {
+	--gradient-start: var(--gradient-color-0);
+	--gradient-end: var(--gradient-color-1);
+}
+
+.projects ul li:nth-of-type(6n + 2) a::after {
+	--gradient-start: var(--gradient-color-1);
+	--gradient-end: var(--gradient-color-2);
+}
+
+.projects ul li:nth-of-type(6n + 3) a::after {
+	--gradient-start: var(--gradient-color-2);
+	--gradient-end: var(--gradient-color-3);
+}
+
+.projects ul li:nth-of-type(6n + 4) a::after {
+	--gradient-start: var(--gradient-color-3);
+	--gradient-end: var(--gradient-color-4);
+}
+
+.projects ul li:nth-of-type(6n + 5) a::after {
+	--gradient-start: var(--gradient-color-4);
+	--gradient-end: var(--gradient-color-5);
+}
+
+.projects ul li:nth-of-type(6n + 0) a::after {
+	--gradient-start: var(--gradient-color-5);
+	--gradient-end: var(--gradient-color-0);
+}
+
+.projects ul li a p {
+	flex-grow: 1;
+}
+
+.projects ul li a img {
+	width: 100%;
+	aspect-ratio: 2 / 1;
+	margin-inline: auto;
+	border-radius: 0.3rem;
+	object-fit: contain;
+}
+
+::selection {
+	background-color: var(--scrollbar-start-color);
+	color: white;
+}
+
+::-webkit-scrollbar {
+	inline-size: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+	background-image: linear-gradient(
+		to bottom,
+		var(--scrollbar-start-color),
+		var(--scrollbar-end-color)
+	);
+}
+
+::-webkit-scrollbar-button:start {
+	background-color: var(--scrollbar-start-color);
+}
+
+::-webkit-scrollbar-button:end {
+	background-color: var(--scrollbar-end-color);
+}
+
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-thumb {
+	block-size: 1rem;
+	border: 0.25rem solid transparent;
+	border-radius: 0.5rem;
+	background-clip: padding-box;
+}
+
+@media (hover: none) {
+	:any-link {
+		-webkit-tap-highlight-color: transparent;
+	}
+}
