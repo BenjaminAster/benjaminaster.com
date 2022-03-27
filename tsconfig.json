@@ -4,5 +4,5 @@
 		"target": "ESNext",
 		"checkJs": true,
 		"noEmit": true,
-	}
+	},
 }

@@ -1,5 +1,5 @@
 
-const /** @type {Record<string, string>[]} */ projects = [
+const projects: Record<string, string>[] = [
 	{
 		url: "/geoquiz/",
 	},
