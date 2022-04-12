@@ -67,6 +67,10 @@ main {
 	margin-block: 0;
 }
 
+:where(h1, h2, h3, h4, h5, h6) {
+	font-weight: 600;
+}
+
 :where(button) {
 	font-family: inherit;
 	font-size: inherit;
@@ -174,7 +178,8 @@ main {
 	padding: .5rem var(--padding-inline);
 	padding-left: calc(var(--padding-inline) + var(--safe-area-inset-left));
 	inline-size: fit-content;
-	border-radius: 0 1rem 1rem 0;
+	border-start-start-radius: 0;
+	border-end-start-radius: 0;
 	transform: translateX(calc(var(--safe-area-inset-left) * -1));
 }
 
