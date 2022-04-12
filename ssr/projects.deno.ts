@@ -1,6 +1,9 @@
 
 const projects: Record<string, string>[] = [
 	{
+		url: "/icons/",
+	},
+	{
 		url: "/geoquiz/",
 	},
 	{
@@ -25,7 +28,7 @@ const projects: Record<string, string>[] = [
 		url: "/tiny-snake/",
 		image: "/tiny-snake/icon.svg",
 		title: "Tiny Snake",
-		description: "Probably the worlds smallest snake game in less than 400 characters of HTML & JavaScript.",
+		description: "Probably the world's smallest snake game in less than 400 characters of HTML & JavaScript.",
 	},
 	{
 		url: "/unicode/",
@@ -37,7 +40,7 @@ const projects: Record<string, string>[] = [
 		url: "/memorize-pi-digits/",
 	},
 	{
-		url: "/browser-version/",
+		url: "/browser/",
 	},
 	{
 		url: "https://ars.electronica.art/keplersgardens/en/robdiloclock/",

@@ -8,7 +8,7 @@ import {
 import projects from "./projects.deno.ts";
 
 /* 
-deno run --unstable --allow-net --allow-read --allow-write=. ssr.deno.ts
+deno run --unstable --allow-net --allow-read --allow-write=. ssr/ssr.deno.ts
 */
 
 const dom = new DOMParser().parseFromString(
