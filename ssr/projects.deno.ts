@@ -1,6 +1,9 @@
 
 const projects: Record<string, string>[] = [
 	{
+		url: "/webgpu-mandelbrot/",
+	},
+	{
 		url: "/icons/",
 	},
 	{
