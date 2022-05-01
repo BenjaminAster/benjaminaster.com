@@ -13,6 +13,11 @@
 	scrollbar-color: var(--scrollbar-start-color) transparent;
 
 	overflow: hidden;
+
+	--twitter-icon: url("https://abs.twimg.com/responsive-web/client-web/icon-svg.168b89d5.svg");
+	--github-icon: url("https://github.githubassets.com/pinned-octocat.svg");
+	--codepen-icon: url("https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg");
+	--email-icon: url("https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/outline/mail.svg");
 }
 
 @media (prefers-color-scheme: light) {
@@ -72,13 +77,18 @@ main {
 }
 
 :where(button) {
-	font-family: inherit;
-	font-size: inherit;
-	font-weight: inherit;
-	background: none;
-	border: none;
-	padding: 0;
+	font-family: unset;
+	font-size: unset;
+	font-weight: unset;
+	background: unset;
+	border: unset;
+	padding: unset;
 	cursor: pointer;
+}
+
+:where(a) {
+	cursor: pointer;
+	color: unset;
 }
 
 .about-me, .contact ul li, .projects ul li, .projects h2 {
@@ -118,7 +128,6 @@ main {
 	gap: .5rem;
 	align-items: center;
 	padding: .8rem 1rem;
-	color: inherit;
 	text-decoration: none;
 	border-radius: .4rem;
 }
@@ -145,24 +154,20 @@ main {
 	background-color: currentColor;
 }
 
-.contact ul li .email a {
-	color: inherit;
-}
-
 .contact ul li .twitter::before {
-	--mask-image: url("https://abs.twimg.com/responsive-web/client-web/icon-svg.168b89d5.svg");
+	--mask-image: var(--twitter-icon);
 }
 
 .contact ul li .github::before {
-	--mask-image: url("https://github.githubassets.com/pinned-octocat.svg");
+	--mask-image: var(--github-icon);
 }
 
 .contact ul li .codepen::before {
-	--mask-image: url("https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg");
+	--mask-image: var(--codepen-icon);
 }
 
 .contact ul li .email::before {
-	--mask-image: url("https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/outline/mail.svg");
+	--mask-image: var(--email-icon);
 }
 
 .projects {
@@ -193,14 +198,47 @@ main {
 }
 
 .projects ul li {
-	transition: opacity .3s, transform 70ms;
+	transition: opacity .3s, transform .15s;
+	position: relative;
 }
 
 .projects ul li:hover {
-	transform: scale(105%);
+	transform: translateY(-.5rem);
 }
 
-.projects ul li a {
+.projects ul li a.repository {
+	position: absolute;
+	display: grid;
+	place-content: center;
+	inline-size: 3rem;
+	aspect-ratio: 1;
+	margin: .5rem;
+	inset-inline-end: 0;
+	inset-block-start: 0;
+	border-radius: .6rem;
+	transition: background-color .15s;
+}
+
+.projects ul li a.repository:hover {
+	background-color: var(--transparent-background);
+}
+
+.projects ul li a.repository::before {
+	content: "";
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-size: contain;
+	mask-size: contain;
+	--mask-image: var(--github-icon);
+	-webkit-mask-image: var(--mask-image);
+	mask-image: var(--mask-image);
+	display: block;
+	block-size: 1.7rem;
+	aspect-ratio: 1;
+	background-color: currentColor;
+}
+
+.projects ul li a.project-link {
 	display: flex;
 	flex-direction: column;
 	gap: .4rem;
@@ -208,11 +246,10 @@ main {
 	block-size: 100%;
 	box-sizing: border-box;
 
-	color: inherit;
 	text-decoration: none;
 }
 
-.projects ul li a::after {
+.projects ul li a.project-link::after {
 	content: "";
 	margin-block: .3rem;
 	block-size: 2px;
@@ -229,32 +266,32 @@ main {
 	--gradient-color-5: magenta;
 }
 
-.projects ul li:nth-of-type(6n + 1) a::after {
+.projects ul li:nth-of-type(6n + 1) a.project-link::after {
 	--gradient-start: var(--gradient-color-0);
 	--gradient-end: var(--gradient-color-1);
 }
 
-.projects ul li:nth-of-type(6n + 2) a::after {
+.projects ul li:nth-of-type(6n + 2) a.project-link::after {
 	--gradient-start: var(--gradient-color-1);
 	--gradient-end: var(--gradient-color-2);
 }
 
-.projects ul li:nth-of-type(6n + 3) a::after {
+.projects ul li:nth-of-type(6n + 3) a.project-link::after {
 	--gradient-start: var(--gradient-color-2);
 	--gradient-end: var(--gradient-color-3);
 }
 
-.projects ul li:nth-of-type(6n + 4) a::after {
+.projects ul li:nth-of-type(6n + 4) a.project-link::after {
 	--gradient-start: var(--gradient-color-3);
 	--gradient-end: var(--gradient-color-4);
 }
 
-.projects ul li:nth-of-type(6n + 5) a::after {
+.projects ul li:nth-of-type(6n + 5) a.project-link::after {
 	--gradient-start: var(--gradient-color-4);
 	--gradient-end: var(--gradient-color-5);
 }
 
-.projects ul li:nth-of-type(6n + 0) a::after {
+.projects ul li:nth-of-type(6n + 0) a.project-link::after {
 	--gradient-start: var(--gradient-color-5);
 	--gradient-end: var(--gradient-color-0);
 }

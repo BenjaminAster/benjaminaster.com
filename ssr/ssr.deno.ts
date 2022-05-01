@@ -19,11 +19,12 @@ const dom = new DOMParser().parseFromString(
 const template: Element = new DOMParser().parseFromString([
 	`<div class="template">`,
 	`	<li>`,
-	`		<a>`,
+	`		<a class="project-link">`,
 	`			<img />`,
 	`			<h3 class="title">&nbsp;</h3>`,
 	`			<p class="description">&nbsp;</p>`,
 	`		</a>`,
+	`		<a class="repository" title="View on GitHub" href></a>`,
 	`	</li>`,
 	`</div>`,
 ].join("\n"), "text/html")!.querySelector(".template")!;
@@ -35,7 +36,7 @@ const cards = projects.map(() => {
 });
 
 await Promise.all(projects.map(async (project: Record<string, string>, index: number) => {
-	let htmlDocument: Document;
+	let htmlDocument: Document = undefined!;
 
 	if (!project.image || !project.title || !project.description) {
 		htmlDocument = new DOMParser().parseFromString(await (await window.fetch(
@@ -52,10 +53,18 @@ await Promise.all(projects.map(async (project: Record<string, string>, index: nu
 	})();
 
 	const title: string = project.title ?? htmlDocument!.querySelector("title")?.textContent;
+	
+	const repository: string = project.repository ?? htmlDocument?.querySelector("meta[name=repository]")?.getAttribute("content");
 
 	const description: string = project.description ?? htmlDocument!.querySelector("meta[name=description]")?.getAttribute("content");
 
 	const card = cards[index];
+
+	if (repository) {
+		card.querySelector(".repository")!.setAttribute("href", repository);
+	} else {
+		card.querySelector(".repository")!.remove();
+	}
 
 	card.querySelector("a")!.setAttribute("href", project.url);
 	card.querySelector("img")!.setAttribute("src", image);
