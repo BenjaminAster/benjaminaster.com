@@ -308,4 +308,8 @@ main {
 	:any-link, button {
 		-webkit-tap-highlight-color: transparent;
 	}
+
+	::-webkit-scrollbar {
+	display: none;
+	}
 }
