@@ -1,9 +1,5 @@
-:root {
-	--safe-area-inset-left: env(safe-area-inset-left, 0px);
-	--safe-area-inset-right: env(safe-area-inset-right, 0px);
-	--safe-area-inset-top: env(safe-area-inset-top, 0px);
-	--safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
 
+:root {
 	--transparent-background: #0003;
 	--transparent-background-no-backdrop-filter: #111c;
 	--shadow-color: #0004;
@@ -14,18 +10,15 @@
 
 	overflow: hidden;
 
+	--safe-area-inset-left: env(safe-area-inset-left, 0px);
+	--safe-area-inset-right: env(safe-area-inset-right, 0px);
+	--safe-area-inset-top: env(safe-area-inset-top, 0px);
+	--safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+
 	--twitter-icon: url("https://abs.twimg.com/responsive-web/client-web/icon-svg.168b89d5.svg");
 	--github-icon: url("https://github.githubassets.com/pinned-octocat.svg");
 	--codepen-icon: url("https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg");
 	--email-icon: url("https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/outline/mail.svg");
-}
-
-@media (prefers-color-scheme: light) {
-	:root {
-		--transparent-background: #fff5;
-		--transparent-background-no-backdrop-filter: #fffc;
-		--shadow-color: #0002;
-	}
 }
 
 @supports not ((backdrop-filter: none) or (-webkit-backdrop-filter: none)) {
@@ -291,7 +284,7 @@ main {
 	--gradient-end: var(--gradient-color-5);
 }
 
-.projects ul li:nth-of-type(6n + 0) a.project-link::after {
+.projects ul li:nth-of-type(6n + 6) a.project-link::after {
 	--gradient-start: var(--gradient-color-5);
 	--gradient-end: var(--gradient-color-0);
 }
@@ -303,7 +296,6 @@ main {
 .projects ul li a img {
 	width: 100%;
 	aspect-ratio: 2 / 1;
-	margin-inline: auto;
 	border-radius: .3rem;
 	object-fit: contain;
 }
