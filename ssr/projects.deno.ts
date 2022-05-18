@@ -31,7 +31,7 @@ const projects: Record<string, string>[] = [
 		url: "/tiny-snake/",
 		image: "/tiny-snake/icon.svg",
 		title: "Tiny Snake",
-		description: "Probably the world's smallest snake game in less than 400 characters of HTML & JavaScript.",
+		description: "A snake game in less than 400 characters of HTML & JavaScript.",
 		repository: "https://github.com/BenjaminAster/Tiny-Snake",
 	},
 	{

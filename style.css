@@ -42,7 +42,7 @@ body {
 	background-position: center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	background-color: slateBlue;
+	background-color: var(--theme-color, slateBlue);
 }
 
 main {
