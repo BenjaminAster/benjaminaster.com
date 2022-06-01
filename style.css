@@ -43,6 +43,14 @@ body {
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-color: var(--theme-color, slateBlue);
+
+	perspective: 25em;
+	perspective-origin: 50% calc(50% - 2em);
+	/* perspective-origin: 50%; */
+}
+
+body * {
+	transform-style: preserve-3d;
 }
 
 main {
@@ -88,18 +96,38 @@ main {
 	--backdrop-filter: blur(.8rem);
 	-webkit-backdrop-filter: var(--backdrop-filter);
 	backdrop-filter: var(--backdrop-filter);
-	box-shadow: 0 0 .7rem var(--shadow-color);
+	/* box-shadow: 0 0 .7rem var(--shadow-color); */
 	border-radius: 1rem;
 	background-color: var(--transparent-background);
+
+	box-shadow: inset .3rem .4rem .4rem #fff1, inset -.3rem -.4rem .4rem #0001, 0 .4rem 1.8rem #0005;
 }
 
 .about-me {
 	display: flex;
 	flex-direction: column;
 	gap: .3rem;
+	/* padding: 1.3rem;
+	padding-block-start: 1rem; */
 	padding: 1rem 1.3rem;
 	margin-inline: 1rem;
 	inline-size: fit-content;
+}
+
+.about-me #browser-warning {
+	padding: .4rem .6rem;
+	border: 2px solid #0002;
+	border-radius: .8rem;
+	background-color: #0002;
+	margin-block: .3rem;
+	max-inline-size: 30rem;
+}
+
+.about-me #browser-warning::first-letter {
+	color: orange;
+	font-size: 2em;
+	float: inline-start;
+	margin-inline-end: .3em;
 }
 
 .contact {
@@ -122,7 +150,7 @@ main {
 	align-items: center;
 	padding: .8rem 1rem;
 	text-decoration: none;
-	border-radius: .4rem;
+	border-radius: inherit;
 }
 
 .contact ul li {
@@ -191,12 +219,19 @@ main {
 }
 
 .projects ul li {
-	transition: opacity .3s, transform .15s;
+	transition: opacity .3s, transform .1s;
 	position: relative;
+	/* transform-style: preserve-3d; */
+}
+
+.projects * {
+	/* transform-style: preserve-3d; */
 }
 
 .projects ul li:hover {
-	transform: translateY(-.5rem);
+	/* transform: translateY(-.5rem); */
+	/* transform: rotateY(180deg); */
+	transform: translateZ(.4rem) rotateX(2deg) scale(1.05);
 }
 
 .projects ul li a.repository {
@@ -205,7 +240,7 @@ main {
 	place-content: center;
 	inline-size: 3rem;
 	aspect-ratio: 1;
-	margin: .5rem;
+	margin: .8rem;
 	inset-inline-end: 0;
 	inset-block-start: 0;
 	border-radius: .6rem;
@@ -213,7 +248,9 @@ main {
 }
 
 .projects ul li a.repository:hover {
-	background-color: var(--transparent-background);
+	/* background-color: var(--transparent-background); */
+	background-color: #0001;
+	box-shadow: inset .3rem .4rem .4rem #0002, inset -.3rem -.4rem .4rem #fff2;
 }
 
 .projects ul li a.repository::before {
@@ -238,7 +275,7 @@ main {
 	padding: .8rem;
 	block-size: 100%;
 	box-sizing: border-box;
-
+	border-radius: inherit;
 	text-decoration: none;
 }
 

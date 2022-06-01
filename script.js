@@ -36,4 +36,8 @@ document.querySelector("button.email").addEventListener("click", function () {
 	}
 })();
 
+if (!CSS.supports("aspect-ratio", "1")) {
+	;/** @type {HTMLElement} */ (document.querySelector("#browser-warning")).hidden = false;
+}
+
 export { };
