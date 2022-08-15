@@ -68,7 +68,7 @@ await Promise.all(projects.map(async (project: Record<string, string>, index: nu
 
 	card.querySelector("a")!.setAttribute("href", project.url);
 	card.querySelector("img")!.setAttribute("src", image);
-	card.querySelector("img")!.setAttribute("alt", title);
+	card.querySelector("img")!.setAttribute("alt", `icon of ${title}`);
 	card.querySelector(".title")!.textContent = title;
 	card.querySelector(".description")!.textContent = description;
 }));

@@ -1,6 +1,13 @@
 
 const projects: Record<string, string>[] = [
 	{
+		url: "https://github.com/BenjaminAster/Brave-Talk-Bamboozler#readme",
+		image: "https://benjaminaster.github.io/Brave-Talk-Bamboozler/assets/icon.svg",
+		title: "Brave Talk Bamboozler",
+		description: "A Chrome extension that tricks Brave Talk into thinking you're using Brave",
+		repository: "https://github.com/BenjaminAster/Brave-Talk-Bamboozler",
+	},
+	{
 		url: "/webgpu-mandelbrot/",
 	},
 	{
