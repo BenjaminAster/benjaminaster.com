@@ -1,7 +1,6 @@
 
 :root {
 	--transparent-background: #1114;
-	--transparent-background-no-backdrop-filter: #111c;
 	--shadow-color: #0004;
 
 	--scrollbar-start-color: tomato;
@@ -18,13 +17,7 @@
 	--twitter-icon: url("https://abs.twimg.com/responsive-web/client-web/icon-svg.168b89d5.svg");
 	--github-icon: url("https://github.githubassets.com/pinned-octocat.svg");
 	--codepen-icon: url("https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg");
-	--email-icon: url("https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/outline/mail.svg");
-}
-
-@supports not ((backdrop-filter: none) or (-webkit-backdrop-filter: none)) {
-	:root {
-		--transparent-background: var(--transparent-background-no-backdrop-filter);
-	}
+	--email-icon: url("https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/24/outline/envelope.svg");
 }
 
 body {
