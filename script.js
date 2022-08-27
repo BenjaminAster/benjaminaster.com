@@ -20,7 +20,11 @@ document.querySelector("button.email").addEventListener("click", function () {
 	});
 });
 
-const imageBlob = await (await window.fetch("https://source.unsplash.com/random/1600x900/?nature", { cache: "no-store" })).blob();
+const imageURL = "https://source.unsplash.com/random/1600x900/?nature,night";
+// const imageURL = "https://source.unsplash.com/random/1600x900/?night";
+// const imageURL = "https://picsum.photos/1600/900.webp";
+
+const imageBlob = await (await window.fetch(imageURL, { cache: "no-store" })).blob();
 document.body.style.setProperty("--background-image", `url("${URL.createObjectURL(imageBlob)}")`);
 
 const themeColor = await (async () => {

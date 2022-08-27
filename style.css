@@ -1,7 +1,8 @@
 
 :root {
 	--transparent-background: #1114;
-	--shadow-color: #0004;
+	/* --shadow-color: #0004; */
+	--shadow-color: #0007;
 
 	--scrollbar-start-color: tomato;
 	--scrollbar-end-color: orange;
@@ -18,6 +19,13 @@
 	--github-icon: url("https://github.githubassets.com/pinned-octocat.svg");
 	--codepen-icon: url("https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg");
 	--email-icon: url("https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/24/outline/envelope.svg");
+
+	--gradient-color-0: tomato;
+	--gradient-color-1: yellow;
+	--gradient-color-2: lime;
+	--gradient-color-3: cyan;
+	--gradient-color-4: dodgerBlue;
+	--gradient-color-5: magenta;
 }
 
 body {
@@ -86,32 +94,51 @@ main {
 	--backdrop-filter: saturate(130%) blur(1rem);
 	-webkit-backdrop-filter: var(--backdrop-filter);
 	backdrop-filter: var(--backdrop-filter);
-	box-shadow: 0 0 .7rem var(--shadow-color);
-	border-radius: 1rem;
+	box-shadow: 0 .2rem 1.5rem var(--shadow-color);
+	--border-radius: 1rem;
+	border-radius: var(--border-radius);
 	background-color: var(--transparent-background);
+	position: relative;
 }
 
 .about-me {
-	display: flex;
-	flex-direction: column;
-	gap: .3rem;
-	/* padding: 1.3rem;
-	padding-block-start: 1rem; */
-	padding: 1rem 1.3rem;
+	display: grid;
+	grid-template: auto auto / 1fr auto;
+	grid-template-areas: "icon heading" "icon text";
+	gap: .3rem 1rem;
+	inline-size: fit-content;
+	padding: 1rem;
+	align-items: center;
+	margin-inline: 1rem;
+	
+	--gradient-start: var(--gradient-color-5);
+	--gradient-end: var(--gradient-color-0);
+}
+
+.about-me > img {
+	grid-area: icon;
+	inline-size: 4rem;
+	aspect-ratio: 1;
+}
+
+.about-me > h1 {
+	grid-area: heading;
+}
+
+.about-me > p {
+	grid-area: text;
+}
+
+#browser-warning {
+	padding: .5rem .8rem;
+	border: 2px solid orange;
+	border-radius: .8rem;
+	background-color: #000a;
 	margin-inline: 1rem;
 	inline-size: fit-content;
 }
 
-.about-me #browser-warning {
-	padding: .4rem .6rem;
-	border: 2px solid #0002;
-	border-radius: .8rem;
-	background-color: #0002;
-	margin-block: .3rem;
-	max-inline-size: 30rem;
-}
-
-.about-me #browser-warning::first-letter {
+#browser-warning::first-letter {
 	color: orange;
 	font-size: 2em;
 	float: inline-start;
@@ -191,10 +218,14 @@ main {
 	gap: 1rem;
 	box-sizing: border-box;
 	position: relative;
+
+	--gradient-start: var(--gradient-color-4);
+	--gradient-end: var(--gradient-color-5);
 }
 
 .projects h2 {
 	--padding-inline: .8rem;
+	--left-radius: 0rem;
 	padding: .5rem var(--padding-inline);
 	padding-left: calc(var(--padding-inline) + var(--safe-area-inset-left));
 	inline-size: fit-content;
@@ -213,12 +244,26 @@ main {
 }
 
 .projects ul li {
-	transition: opacity .3s, translate .1s;
+	--transition-duration: .3s;
+	--hover-rotate: 5grad;
 	position: relative;
+	transform-origin: center right;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.projects ul li {
+		transition: rotate var(--transition-duration);
+	}
+}
+
+.projects ul li:nth-of-type(even) {
+	--hover-rotate: 3grad;
+	transform-origin: bottom center;
 }
 
 .projects ul li:hover {
-	translate: 0 -.3rem;
+	rotate: var(--hover-rotate);
+	--transition-duration: .1s;
 }
 
 .projects ul li a.repository {
@@ -262,51 +307,97 @@ main {
 	box-sizing: border-box;
 	border-radius: inherit;
 	text-decoration: none;
+	position: relative;
 }
 
-.projects ul li a.project-link::after {
+@media (prefers-contrast: no-preference) {
+	.projects ul li a.project-link {
+		background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: #fffb;
+	}
+}
+
+.bottom-gradient {
+	--line-thickness: 2px;
+	--radius: var(--border-radius);
+	--_left-radius: var(--left-radius, var(--radius));
+	position: absolute;
+	inset: auto 0 0;
+	block-size: var(--radius);
+
+	--mask:
+		radial-gradient(
+			circle at top right,
+			transparent 0 calc(var(--radius) - var(--line-thickness) - .5px),
+			white calc(var(--radius) - var(--line-thickness) + .5px) calc(var(--radius) - .5px),
+			transparent calc(var(--radius) + .5px)
+		) 0 0 / var(--_left-radius) var(--radius) no-repeat,
+
+		linear-gradient(white, white) 
+		var(--_left-radius) calc(var(--radius) - var(--line-thickness)) / calc(100% - var(--_left-radius) - var(--radius)) var(--line-thickness) 
+		no-repeat,
+
+		radial-gradient(
+			circle at top left,
+			transparent 0 calc(var(--radius) - var(--line-thickness) - .5px),
+			white calc(var(--radius) - var(--line-thickness) + .5px) calc(var(--radius) - .5px),
+			transparent calc(var(--radius) + .5px)
+		) 100% 0 / var(--radius) var(--radius) no-repeat;
+	-webkit-mask: var(--mask);
+	mask: var(--mask);
+}
+
+.bottom-gradient::before {
 	content: "";
-	margin-block: .3rem;
-	block-size: 2px;
-	background-image: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
-	--mask-image: linear-gradient(to right, transparent, white 25% 75%, transparent);
-	-webkit-mask-image: var(--mask-image);
-	mask-image: var(--mask-image);
+	display: block;
+	inline-size: 100%;
+	block-size: 100%;
+	background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
 
-	--gradient-color-0: tomato;
-	--gradient-color-1: yellow;
-	--gradient-color-2: lime;
-	--gradient-color-3: cyan;
-	--gradient-color-4: dodgerBlue;
-	--gradient-color-5: magenta;
+	--mask:
+		conic-gradient(
+			at top right,
+			white 210grad,
+			transparent 290grad
+		) 0 0 / var(--_left-radius) var(--radius) no-repeat,
+		linear-gradient(white, white) var(--_left-radius) 0 / calc(100% - var(--_left-radius) - var(--radius)) var(--radius) no-repeat,
+		conic-gradient(
+			at top left,
+			transparent 110grad,
+			white 190grad
+		) 100% 0 / var(--radius) var(--radius) no-repeat;
+	-webkit-mask: var(--mask);
+	mask: var(--mask);
 }
 
-.projects ul li:nth-of-type(6n + 1) a.project-link::after {
+:is(.projects, .contact) ul li:nth-of-type(6n + 1) {
 	--gradient-start: var(--gradient-color-0);
 	--gradient-end: var(--gradient-color-1);
 }
 
-.projects ul li:nth-of-type(6n + 2) a.project-link::after {
+:is(.projects, .contact) ul li:nth-of-type(6n + 2) {
 	--gradient-start: var(--gradient-color-1);
 	--gradient-end: var(--gradient-color-2);
 }
 
-.projects ul li:nth-of-type(6n + 3) a.project-link::after {
+:is(.projects, .contact) ul li:nth-of-type(6n + 3) {
 	--gradient-start: var(--gradient-color-2);
 	--gradient-end: var(--gradient-color-3);
 }
 
-.projects ul li:nth-of-type(6n + 4) a.project-link::after {
+:is(.projects, .contact) ul li:nth-of-type(6n + 4) {
 	--gradient-start: var(--gradient-color-3);
 	--gradient-end: var(--gradient-color-4);
 }
 
-.projects ul li:nth-of-type(6n + 5) a.project-link::after {
+:is(.projects, .contact) ul li:nth-of-type(6n + 5) {
 	--gradient-start: var(--gradient-color-4);
 	--gradient-end: var(--gradient-color-5);
 }
 
-.projects ul li:nth-of-type(6n + 6) a.project-link::after {
+:is(.projects, .contact) ul li:nth-of-type(6n + 6) {
 	--gradient-start: var(--gradient-color-5);
 	--gradient-end: var(--gradient-color-0);
 }

@@ -18,12 +18,12 @@
 	<link rel="stylesheet" href="./style.css" />
 	<link rel="canonical" href="https://benjaminaster.com" />
 
-	<link rel="preload" as="fetch" crossorigin href="https://source.unsplash.com/random/1600x900/?nature" />
+	<link rel="preload" as="fetch" crossorigin href="https://source.unsplash.com/random/1600x900/?nature,night" />
 
 	<noscript>
 		<style>
 			body {
-				--background-image: url("https://source.unsplash.com/random/1600x900/?nature");
+				--background-image: url("https://source.unsplash.com/random/1600x900/?nature,night");
 			}
 
 		</style>
@@ -37,38 +37,68 @@
 <body>
 	<main>
 		<section aria-label="About me" class="about-me">
+			<img src="/media/favicon.svg" alt="icon" />
+
 			<h1>Hi, I'm Benjamin Aster.</h1>
 
 			<p>
 				I'm an Austrian nerd doing silly things on the computer.
 			</p>
 
-			<p hidden id="browser-warning">
-				⚠&#xFE0E; You are using an outdated version of your browser.
-				Please update your browser to the latest version.
-			</p>
+			<div class="bottom-gradient"></div>
 		</section>
+
+		<p hidden id="browser-warning">
+			⚠&#xFE0E; <br />
+			You are using an outdated version of your browser.
+			Please update it to the latest version.
+		</p>
 
 		<section aria-label="Contact and social media">
 			<address class="contact">
 				<ul>
-					<li><a href="https://github.com/BenjaminAster" class="github">GitHub</a></li>
-					<li><a href="https://twitter.com/Benjamin_Aster" class="twitter">Twitter</a></li>
-					<li><a href="https://codepen.io/Benjamin_Aster" class="codepen">CodePen</a></li>
+					<li>
+						<a href="https://github.com/BenjaminAster" class="github">GitHub</a>
+						<div class="bottom-gradient"></div>
+					</li>
+					<li>
+						<a href="https://twitter.com/Benjamin_Aster" class="twitter">Twitter</a>
+						<div class="bottom-gradient"></div>
+					</li>
+					<li>
+						<a href="https://codepen.io/Benjamin_Aster" class="codepen">CodePen</a>
+						<div class="bottom-gradient"></div>
+					</li>
 					<li>
 						<button class="email" aria-label="Click to reveal email address">
 							Email
 						</button>
 						<a hidden href="#"></a>
+						<div class="bottom-gradient"></div>
 					</li>
 				</ul>
 			</address>
 		</section>
 
 		<section aria-label="Projects" class="projects">
-			<h2>Projects:</h2>
+			<h2>
+				Projects:
+				<div class="bottom-gradient"></div>
+			</h2>
 
-			<ul></ul>
+			<ul>
+				<template>
+					<li>
+						<a class="project-link">
+							<img />
+							<h3 class="title">&nbsp;</h3>
+							<p class="description">&nbsp;</p>
+							<div class="bottom-gradient"></div>
+						</a>
+						<a class="repository" title="View on GitHub" href></a>
+					</li>
+				</template>
+			</ul>
 		</section>
 	</main>
 </body>

@@ -3,7 +3,7 @@ import {
 	DOMParser,
 	type Element,
 	type Document,
-} from "https://deno.land/x/deno_dom@v0.1.21-alpha/deno-dom-wasm.ts";
+} from "https://deno.land/x/deno_dom@v0.1.34-alpha/deno-dom-wasm.ts";
 
 import projects from "./projects.deno.ts";
 
@@ -11,27 +11,31 @@ import projects from "./projects.deno.ts";
 deno run --unstable --allow-net --allow-read --allow-write=. ssr/ssr.deno.ts
 */
 
-const dom = new DOMParser().parseFromString(
+const document = new DOMParser().parseFromString(
 	await Deno.readTextFile(new URL("./template.html", import.meta.url)),
 	"text/html",
 )!;
 
-const template: Element = new DOMParser().parseFromString([
-	`<div class="template">`,
-	`	<li>`,
-	`		<a class="project-link">`,
-	`			<img />`,
-	`			<h3 class="title">&nbsp;</h3>`,
-	`			<p class="description">&nbsp;</p>`,
-	`		</a>`,
-	`		<a class="repository" title="View on GitHub" href></a>`,
-	`	</li>`,
-	`</div>`,
-].join("\n"), "text/html")!.querySelector(".template")!;
+// const template: Element = new DOMParser().parseFromString([
+// 	`<div class="template">`,
+// 	`	<li>`,
+// 	`		<a class="project-link">`,
+// 	`			<img />`,
+// 	`			<h3 class="title">&nbsp;</h3>`,
+// 	`			<p class="description">&nbsp;</p>`,
+// 	`		</a>`,
+// 	`		<a class="repository" title="View on GitHub" href></a>`,
+// 	`	</li>`,
+// 	`</div>`,
+// ].join("\n"), "text/html")!.querySelector(".template")!;
+
+const template = document.querySelector(".projects > ul > template");
+
+// console.log(template, template.firstElementChild, template.content);
 
 const cards = projects.map(() => {
-	const clone: Element = (template.firstElementChild!.cloneNode(true));
-	dom.querySelector(".projects ul")!.appendChild(clone);
+	const clone: Element = template.cloneNode(true).content.firstElementChild;
+	document.querySelector(".projects ul")!.appendChild(clone);
 	return clone;
 });
 
@@ -73,5 +77,5 @@ await Promise.all(projects.map(async (project: Record<string, string>, index: nu
 	card.querySelector(".description")!.textContent = description;
 }));
 
-Deno.writeTextFile(new URL("../index.html", import.meta.url), "<!DOCTYPE html>\n" + dom.documentElement!.outerHTML);
+Deno.writeTextFile(new URL("../index.html", import.meta.url), "<!DOCTYPE html>\n" + document.documentElement!.outerHTML);
 
