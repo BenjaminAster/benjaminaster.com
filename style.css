@@ -1,14 +1,10 @@
 
 :root {
-	--transparent-background: #1114;
-	/* --shadow-color: #0004; */
+	--transparent-background: #0007;
 	--shadow-color: #0007;
 
 	--scrollbar-start-color: tomato;
 	--scrollbar-end-color: orange;
-	scrollbar-color: var(--scrollbar-start-color) transparent;
-
-	overflow: hidden;
 
 	--safe-area-inset-left: env(safe-area-inset-left, 0px);
 	--safe-area-inset-right: env(safe-area-inset-right, 0px);
@@ -26,12 +22,22 @@
 	--gradient-color-3: cyan;
 	--gradient-color-4: dodgerBlue;
 	--gradient-color-5: magenta;
+
+	scrollbar-color: var(--scrollbar-start-color) transparent;
+	overflow: hidden;
+}
+
+@media (prefers-contrast: more) {
+	:root {
+		--transparent-background: #000b;
+	}
 }
 
 body {
 	margin: 0;
 	font-family: system-ui, sans-serif;
 	box-sizing: border-box;
+	color: white;
 
 	position: fixed;
 	inset: 0;
@@ -90,11 +96,11 @@ main {
 	color: unset;
 }
 
-.about-me, .contact ul li, .projects ul li, .projects h2 {
+.about-me, .contact ul li, .projects ul li .container, .projects h2 {
 	--backdrop-filter: saturate(130%) blur(1rem);
 	-webkit-backdrop-filter: var(--backdrop-filter);
 	backdrop-filter: var(--backdrop-filter);
-	box-shadow: 0 .2rem 1.5rem var(--shadow-color);
+	box-shadow: 0 .2rem 1rem var(--shadow-color);
 	--border-radius: 1rem;
 	border-radius: var(--border-radius);
 	background-color: var(--transparent-background);
@@ -244,26 +250,83 @@ main {
 }
 
 .projects ul li {
-	--transition-duration: .3s;
-	--hover-rotate: 5grad;
-	position: relative;
-	transform-origin: center right;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-	.projects ul li {
-		transition: rotate var(--transition-duration);
-	}
-}
-
-.projects ul li:nth-of-type(even) {
-	--hover-rotate: 3grad;
-	transform-origin: bottom center;
+	--play-state: paused;
+	animation: 1ms var(--play-state) enable-animation;
+	--animation: var(--animation-duration) ease-in-out wiggle;
 }
 
 .projects ul li:hover {
-	rotate: var(--hover-rotate);
+	--play-state: running;
+}
+
+.projects ul li .container {
+	transform-origin: var(--transform-origin);
+}
+
+.projects ul li:hover .container {
+	rotate: 5grad;
 	--transition-duration: .1s;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.projects ul li .container {
+		transition: rotate 80ms;
+	}
+	
+	.projects ul li:not(:hover) .container {
+		animation: var(--animation);
+	}
+}
+
+@keyframes enable-animation {
+	from {
+		--animation: none;
+	}
+}
+
+@keyframes wiggle {
+	0% {
+		rotate: 5grad;
+	}
+	20% {
+		rotate: -4grad;
+	}
+	40% {
+		rotate: 3grad;
+	}
+	60% {
+		rotate: -2grad;
+	}
+	80% {
+		rotate: 1grad;
+	}
+	100% {
+		rotate: 0grad;
+	}
+}
+
+.projects ul li:nth-of-type(4n + 1) {
+	--transform-origin: bottom center;
+	--animation-duration: 500ms;
+}
+
+.projects ul li:nth-of-type(4n + 2) {
+	--transform-origin: center left;
+	--animation-duration: 625ms;
+}
+
+.projects ul li:nth-of-type(4n + 3) {
+	--transform-origin: top center;
+	--animation-duration: 875ms;
+}
+
+.projects ul li:nth-of-type(4n + 4) {
+	--transform-origin: center right;
+	--animation-duration: 750ms;
+}
+
+.projects ul li > .container {
+	block-size: 100%;
 }
 
 .projects ul li a.repository {
@@ -354,7 +417,7 @@ main {
 	display: block;
 	inline-size: 100%;
 	block-size: 100%;
-	background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+	background-image: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
 
 	--mask:
 		conic-gradient(
