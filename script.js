@@ -20,30 +20,62 @@ document.querySelector("button.email").addEventListener("click", function () {
 	});
 });
 
-const imageURL = "https://source.unsplash.com/random/1600x900/?nature,night";
-// const imageURL = "https://source.unsplash.com/random/1600x900/?night";
-// const imageURL = "https://picsum.photos/1600/900.webp";
-
-const imageBlob = await (await window.fetch(imageURL, { cache: "no-store" })).blob();
-document.body.style.setProperty("--background-image", `url("${URL.createObjectURL(imageBlob)}")`);
-
-const themeColor = await (async () => {
-	const context = Object.assign(document.createElement("canvas"), {
-		width: 1,
-		height: 1,
-	}).getContext("2d");
-	context.imageSmoothingEnabled = true;
-	context.drawImage(await window.createImageBitmap(imageBlob), 0, 0, 1, 1);
-	return `rgb(${context.getImageData(0, 0, 1, 1).data.slice(0, 3).join(" ")})`;
-})();
-
-document.documentElement.style.setProperty("--theme-color", themeColor);
-
 {
-	const meta = document.createElement("meta");
-	meta.setAttribute("name", "theme-color");
-	meta.setAttribute("content", themeColor);
-	document.head.appendChild(meta);
+	const imageURL = "https://source.unsplash.com/collection/1912928/1600x900";
+
+	let imageIds;
+
+	const getUnsplashLink = async (/** @type {{ imageId: string }} */ { imageId }) => {
+		imageIds = {};
+		imageIds = await (await window.fetch("./image-ids.json")).json();
+		const { unsplashId } = imageIds.find(({ imageId: _imageId }) => _imageId === imageId) ?? {};
+		return `https://unsplash.com/photos/${unsplashId}`;
+	};
+
+	{
+		const imageId = new URLSearchParams(location.search).get("open-image");
+		if (imageId) {
+			window.open(await getUnsplashLink({ imageId }), "_self");
+		}
+	}
+
+	const response = await window.fetch(imageURL, { cache: "reload" });
+
+	{
+		const { imageId } = response.url.match(/\/photo-(?<imageId>[^\?]+)\?/)?.groups ?? {};
+
+		const viewOriginalImageElement = /** @type {HTMLAnchorElement} */ (document.querySelector("#original-image-link"));
+		viewOriginalImageElement.href = `/?open-image=${imageId}`;
+		viewOriginalImageElement.onfocus = viewOriginalImageElement.onpointerenter = async () => {
+			if (imageIds) return;
+			viewOriginalImageElement.href = await getUnsplashLink({ imageId });
+		};
+	}
+
+	{
+		const imageBlob = await response.blob();
+		document.documentElement.style.setProperty("--background-image", `url("${URL.createObjectURL(imageBlob)}")`);
+		document.documentElement.classList.add("image-loaded");
+
+		const themeColor = await (async () => {
+			const context = Object.assign(document.createElement("canvas"), {
+				width: 1,
+				height: 1,
+			}).getContext("2d");
+			context.imageSmoothingEnabled = true;
+			context.drawImage(await window.createImageBitmap(imageBlob), 0, 0, 1, 1);
+			return `rgb(${context.getImageData(0, 0, 1, 1).data.slice(0, 3).join(" ")})`;
+		})();
+
+		document.documentElement.style.setProperty("--theme-color", themeColor);
+
+		{
+			const meta = document.createElement("meta");
+			meta.setAttribute("name", "theme-color");
+			meta.setAttribute("content", themeColor);
+			document.head.appendChild(meta);
+		}
+	}
 }
 
 export { };

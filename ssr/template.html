@@ -18,14 +18,14 @@
 	<link rel="stylesheet" href="./style.css" />
 	<link rel="canonical" href="https://benjaminaster.com" />
 
-	<link rel="preload" as="fetch" crossorigin href="https://source.unsplash.com/random/1600x900/?nature,night" />
+	<link rel="preload" as="fetch" crossorigin href="https://source.unsplash.com/collection/1912928/1600x900" />
 
 	<noscript>
 		<style>
-			body {
-				--background-image: url("https://source.unsplash.com/random/1600x900/?nature,night");
+			:root {
+				--background-image: url("https://source.unsplash.com/collection/1912928/1600x900");
+				--javascript-enabled: var(--FALSE);
 			}
-
 		</style>
 	</noscript>
 
@@ -35,18 +35,32 @@
 </head>
 
 <body>
+	
 	<main>
-		<section aria-label="About me" class="about-me">
-			<img src="/media/favicon.svg" alt="icon" />
-
-			<h1>Hi, I'm Benjamin Aster.</h1>
-
-			<p>
-				I'm an Austrian nerd doing silly things on the computer.
+		<div class="image-info-and-about-me">
+			<p class="image-info">
+				<span class="loading-image">
+					loading random image from <a href="https://unsplash.com">Unsplash</a>...
+				</span>
+				<span class="loaded-image-info">
+					random image from <a href="https://unsplash.com">Unsplash</a>
+					&bull;
+					<a id="original-image-link" href="#">view original</a>
+				</span>
 			</p>
 
-			<div class="bottom-gradient"></div>
-		</section>
+			<section aria-label="About me" class="about-me">
+				<img src="/media/favicon.svg" alt="icon" />
+				
+				<h1>Hi, I'm Benjamin Aster.</h1>
+				
+				<p>
+					I'm an Austrian nerd doing silly things on the computer.
+				</p>
+				
+				<div class="bottom-gradient"></div>
+			</section>
+		</div>
 
 		<p hidden id="browser-warning">
 			⚠&#xFE0E; <br />

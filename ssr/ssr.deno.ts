@@ -57,7 +57,7 @@ await Promise.all(projects.map(async (project: Record<string, string>, index: nu
 	})();
 
 	const title: string = project.title ?? htmlDocument!.querySelector("title")?.textContent;
-	
+
 	const repository: string = project.repository ?? htmlDocument?.querySelector("meta[name=repository]")?.getAttribute("content");
 
 	const description: string = project.description ?? htmlDocument!.querySelector("meta[name=description]")?.getAttribute("content");
@@ -79,3 +79,27 @@ await Promise.all(projects.map(async (project: Record<string, string>, index: nu
 
 Deno.writeTextFile(new URL("../index.html", import.meta.url), "<!DOCTYPE html>\n" + document.documentElement!.outerHTML);
 
+/* 
+
+https://picsum.photos/1600/900.webp
+https://source.unsplash.com/random/1600x900/?night
+
+https://unsplash.com/collections/786923
+https://unsplash.com/collections/2390759
+https://unsplash.com/collections/4286478
+https://unsplash.com/collections/991244
+https://unsplash.com/collections/9550031
+https://unsplash.com/collections/357644
+https://unsplash.com/collections/1267066
+https://unsplash.com/collections/1173230
+https://unsplash.com/collections/3147309
+https://unsplash.com/collections/3101394
+https://unsplash.com/collections/11637825
+https://unsplash.com/collections/2270725
+https://unsplash.com/collections/64887918
+https://unsplash.com/collections/1912928
+*/
+
+/* 
+copy([...document.querySelectorAll(".mItv1 > div > figure > div > div > a")].map(el => [el.href, el.querySelector("img").src]))
+ */
