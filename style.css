@@ -38,6 +38,11 @@
 	--gradient: linear-gradient(to top right, #000, #333);
 	background: var(--background-image, var(--gradient)) center / cover no-repeat fixed;
 	background-color: var(--theme-color, darkSlateBlue);
+
+	--tunnel-animation: 1s linear infinite tunnel;
+	--move-rainbow-animation: 3s linear infinite move-rainbow;
+	--fade-out-animation: none;
+	--hide-animation: none;
 }
 
 @media (prefers-contrast: more) {
@@ -61,7 +66,7 @@ body {
 }
 
 :root::before {
-	content: var(--javascript-enabled, "");
+	content: var(--javascript-enabled, var(--content, ""));
 	position: fixed;
 	display: block;
 	inset: 0;
@@ -69,7 +74,7 @@ body {
 
 	--background-color-width: 5rem;
 	--background-size: calc(6 * var(--background-color-width) * var(--sqrt-2));
-	background: repeating-linear-gradient(
+	--_background: repeating-linear-gradient(
 		to bottom right,
 		var(--gradient-color-0) calc(0 * var(--background-color-width)),
 		var(--gradient-color-1) calc(1 * var(--background-color-width)),
@@ -80,17 +85,15 @@ body {
 		var(--gradient-color-0) calc(6 * var(--background-color-width))
 	) 0 0 / var(--background-size) var(--background-size) repeat;
 
+	background: var(--background, var(--_background));
+
 	--time: 0;
 	--circle-distance: 4rem;
 	--circle-width: .5rem;
-	--tunnel-animation: 1s linear infinite tunnel;
-	--move-rainbow-animation: 3s linear infinite move-rainbow;
-	--hide-animation: none;
-	--fade-out-animation: none;
-	animation: var(--tunnel-animation), var(--move-rainbow-animation), var(--hide-animation), var(--fade-out-animation);
-	--mask:
+	animation: var(--tunnel-animation), var(--move-rainbow-animation), var(--fade-out-animation), var(--hide-animation);
+	--_mask:
 		repeating-radial-gradient(
-			circle var(--circle-distance) at center center,
+			circle at center center,
 
 			transparent
 			0rem
@@ -109,14 +112,15 @@ body {
 			min(var(--circle-distance), (var(--time) + 1) * var(--circle-distance) - .5px)
 		) center center no-repeat;
 
-	-webkit-mask: var(--mask);
-	mask: var(--mask);
+	-webkit-mask: var(--mask, var(--_mask));
+	mask: var(--mask, var(--_mask));
 }
 
-:root.image-loaded::before {
+:root.image-loaded {
 	--fade-out-duration: 1s;
-	--hide-animation: 1ms var(--fade-out-duration) 1 forwards hide-tunnel;
-	--fade-out-animation: var(--fade-out-duration) 1 forwards fade-out;
+	animation: 1ms var(--fade-out-duration) forwards reset-properties;
+	--hide-animation: 1ms var(--fade-out-duration) forwards hide-tunnel;
+	--fade-out-animation: var(--fade-out-duration) forwards fade-out;
 }
 
 @property --time {
@@ -143,15 +147,27 @@ body {
 	}
 }
 
-@keyframes hide-tunnel {
-	to {
-		content: none;
-	}
-}
-
 @keyframes fade-out {
 	to {
 		opacity: 0;
+	}
+}
+
+@keyframes hide-tunnel {
+	to {
+		background: none;
+		-webkit-mask: none;
+		mask: none;
+	}
+}
+
+@keyframes reset-properties {
+	to {
+		--content: none;
+		--tunnel-animation: none;
+		--move-rainbow-animation: none;
+		--mask: none;
+		--background: none;
 	}
 }
 
@@ -165,11 +181,11 @@ body {
 
 	background: url("/media/favicon.svg") center / 80vmin no-repeat;
 	opacity: .2;
+	filter: drop-shadow(0 0 1rem black);
 }
 
 main {
 	--padding-block: 1rem;
-	/* padding-top: max(var(--safe-area-inset-top), var(--padding-block)); */
 	padding-top: var(--safe-area-inset-top);
 	padding-right: var(--safe-area-inset-right);
 	padding-bottom: max(var(--safe-area-inset-bottom), var(--padding-block));
