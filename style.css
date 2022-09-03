@@ -400,6 +400,7 @@ main {
 	list-style: none;
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+	grid-template-rows: masonry;
 	gap: 1.5rem;
 }
 
@@ -460,22 +461,22 @@ main {
 
 .projects ul li:nth-of-type(4n + 1) {
 	--transform-origin: bottom center;
-	--animation-duration: 500ms;
+	--animation-duration: 600ms;
 }
 
 .projects ul li:nth-of-type(4n + 2) {
 	--transform-origin: center left;
-	--animation-duration: 625ms;
+	--animation-duration: 700ms;
 }
 
 .projects ul li:nth-of-type(4n + 3) {
 	--transform-origin: top center;
-	--animation-duration: 875ms;
+	--animation-duration: 900ms;
 }
 
 .projects ul li:nth-of-type(4n + 4) {
 	--transform-origin: center right;
-	--animation-duration: 750ms;
+	--animation-duration: 800ms;
 }
 
 .projects ul li > .container {
@@ -526,12 +527,17 @@ main {
 	position: relative;
 }
 
-@media (prefers-contrast: no-preference) {
+.projects ul li a.project-link {
+	background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: #fffb;
+}
+
+@media (prefers-contrast: more) {
 	.projects ul li a.project-link {
-		background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
-		-webkit-background-clip: text;
-		background-clip: text;
-		color: #fffb;
+		background: none;
+		color: white;
 	}
 }
 
