@@ -1,6 +1,9 @@
 
 const projects: Record<string, string>[] = [
 	{
+		url: "/pattern-generator/",
+	},
+	{
 		url: "https://www.npmjs.com/package/new-javascript",
 		image: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg",
 		title: "TypeScript types for new JavaScript",

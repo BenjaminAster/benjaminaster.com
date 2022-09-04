@@ -1,6 +1,6 @@
 
 :root {
-	--transparent-background: #0007;
+	--transparent-background: #0009;
 	--shadow-color: #0007;
 
 	--TRUE: initial;
@@ -35,8 +35,8 @@
 
 	--javascript-enabled: var(--TRUE);
 
-	--gradient: linear-gradient(to top right, #000, #333);
-	background: var(--background-image, var(--gradient)) center / cover no-repeat fixed;
+	--gradient: linear-gradient(to right top, #000, #333);
+	background: var(--background-image, var(--gradient)) center top / cover no-repeat fixed;
 	background-color: var(--theme-color, darkSlateBlue);
 
 	--tunnel-animation: 1s linear infinite tunnel;
@@ -63,125 +63,6 @@ body {
 	-moz-text-size-adjust: none;
 	-webkit-text-size-adjust: none;
 	text-size-adjust: none;
-}
-
-:root::before {
-	content: var(--javascript-enabled, var(--content, ""));
-	position: fixed;
-	display: block;
-	inset: 0;
-	pointer-events: none;
-
-	--background-color-width: 5rem;
-	--background-size: calc(6 * var(--background-color-width) * var(--sqrt-2));
-	--_background: repeating-linear-gradient(
-		to bottom right,
-		var(--gradient-color-0) calc(0 * var(--background-color-width)),
-		var(--gradient-color-1) calc(1 * var(--background-color-width)),
-		var(--gradient-color-2) calc(2 * var(--background-color-width)),
-		var(--gradient-color-3) calc(3 * var(--background-color-width)),
-		var(--gradient-color-4) calc(4 * var(--background-color-width)),
-		var(--gradient-color-5) calc(5 * var(--background-color-width)),
-		var(--gradient-color-0) calc(6 * var(--background-color-width))
-	) 0 0 / var(--background-size) var(--background-size) repeat;
-
-	background: var(--background, var(--_background));
-
-	--time: 0;
-	--circle-distance: 4rem;
-	--circle-width: .5rem;
-	animation: var(--tunnel-animation), var(--move-rainbow-animation), var(--fade-out-animation), var(--hide-animation);
-	--_mask:
-		repeating-radial-gradient(
-			circle at center center,
-
-			transparent
-			0rem
-			calc(var(--time) * var(--circle-distance) - var(--circle-width) - .5px),
-
-			white
-			calc(var(--time) * var(--circle-distance) - var(--circle-width) + .5px)
-			calc(var(--time) * var(--circle-distance) - .5px),
-
-			transparent 
-			calc(var(--time) * var(--circle-distance) + .5px)
-			min(var(--circle-distance), (var(--time) + 1) * var(--circle-distance) - var(--circle-width) - .5px),
-
-			white
-			min(var(--circle-distance), (var(--time) + 1) * var(--circle-distance) - var(--circle-width) + .5px)
-			min(var(--circle-distance), (var(--time) + 1) * var(--circle-distance) - .5px)
-		) center center no-repeat;
-
-	-webkit-mask: var(--mask, var(--_mask));
-	mask: var(--mask, var(--_mask));
-}
-
-:root.image-loaded {
-	--fade-out-duration: 1s;
-	animation: 1ms var(--fade-out-duration) forwards reset-properties;
-	--hide-animation: 1ms var(--fade-out-duration) forwards hide-tunnel;
-	--fade-out-animation: var(--fade-out-duration) forwards fade-out;
-}
-
-@property --time {
-	syntax: "<number>";
-	inherits: true;
-	initial-value: 0;
-}
-
-@keyframes tunnel {
-	from {
-		--time: 0;
-	}
-	to {
-		--time: 1;
-	}
-}
-
-@keyframes move-rainbow {
-	from {
-		background-position-x: 0rem;
-	}
-	to {
-		background-position: var(--background-size) var(--background-size);
-	}
-}
-
-@keyframes fade-out {
-	to {
-		opacity: 0;
-	}
-}
-
-@keyframes hide-tunnel {
-	to {
-		background: none;
-		-webkit-mask: none;
-		mask: none;
-	}
-}
-
-@keyframes reset-properties {
-	to {
-		--content: none;
-		--tunnel-animation: none;
-		--move-rainbow-animation: none;
-		--mask: none;
-		--background: none;
-	}
-}
-
-:root:not(.image-loaded)::after {
-	content: var(--javascript-enabled, "");
-	position: fixed;
-	display: block;
-	inset: 0;
-	pointer-events: none;
-	z-index: -1;
-
-	background: url("/media/favicon.svg") center / 80vmin no-repeat;
-	opacity: .2;
-	filter: drop-shadow(0 0 1rem black);
 }
 
 main {
@@ -224,7 +105,7 @@ main {
 }
 
 .about-me, .contact ul li, .projects ul li .container, .projects h2, .image-info {
-	--backdrop-filter: saturate(130%) blur(1rem);
+	--backdrop-filter: saturate(130%) blur(1.3rem);
 	-webkit-backdrop-filter: var(--backdrop-filter);
 	backdrop-filter: var(--backdrop-filter);
 	box-shadow: 0 .2rem 1rem var(--shadow-color);
@@ -232,32 +113,6 @@ main {
 	border-radius: var(--border-radius);
 	background-color: var(--transparent-background);
 	position: relative;
-}
-
-.image-info-and-about-me {
-	display: flex;
-	column-gap: 1rem;
-	flex-flow: row-reverse wrap;
-	justify-content: center;
-	align-items: start;
-	padding-inline: 1rem;
-}
-
-.image-info {
-	border-radius: .4rem;
-	border-start-start-radius: 0;
-	border-start-end-radius: 0;
-	padding-block: .1em .3em;
-	padding-inline: .5em;
-	block-size: fit-content;
-}
-
-:root:not(.image-loaded) .image-info .loaded-image-info {
-	display: none;
-}
-
-:root.image-loaded .image-info .loading-image {
-	display: none;
 }
 
 .about-me {
@@ -269,7 +124,7 @@ main {
 	padding: 1rem;
 	align-items: center;
 	margin-block-start: 1rem;
-	margin-inline-end: auto;
+	margin-inline: 1rem;
 
 	--gradient-start: var(--gradient-color-5);
 	--gradient-end: var(--gradient-color-0);

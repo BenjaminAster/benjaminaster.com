@@ -16,8 +16,7 @@
 	<link rel="stylesheet" href="./style.css">
 	<link rel="canonical" href="https://benjaminaster.com">
 
-	<link rel="preload" as="fetch" crossorigin="" media="(orientation: landscape)" href="https://source.unsplash.com/collection/1912928/1600x900">
-	<link rel="preload" as="fetch" crossorigin="" media="(orientation: portrait)" href="https://source.unsplash.com/collection/1912928/900x1600">
+	<link rel="modulepreload" href="https://benjaminaster.com/pattern-generator/main.js">
 
 	<noscript>
 		<style>
@@ -35,30 +34,17 @@
 
 <body>
 	<main>
-		<div class="image-info-and-about-me">
-			<p class="image-info">
-				<span class="loading-image">
-					loading random image from <a href="https://unsplash.com">Unsplash</a>...
-				</span>
-				<span class="loaded-image-info">
-					random image from <a href="https://unsplash.com">Unsplash</a>
-					•
-					<a id="original-image-link" href="#">view original</a>
-				</span>
+		<section aria-label="About me" class="about-me">
+			<img src="/media/favicon.svg" alt="icon">
+			
+			<h1>Hi, I'm Benjamin Aster.</h1>
+			
+			<p>
+				I'm an Austrian nerd doing silly things on the computer.
 			</p>
-
-			<section aria-label="About me" class="about-me">
-				<img src="/media/favicon.svg" alt="icon">
-				
-				<h1>Hi, I'm Benjamin Aster.</h1>
-				
-				<p>
-					I'm an Austrian nerd doing silly things on the computer.
-				</p>
-				
-				<div class="bottom-gradient"></div>
-			</section>
-		</div>
+			
+			<div class="bottom-gradient"></div>
+		</section>
 
 		<p hidden="" id="browser-warning">
 			⚠︎ <br>
@@ -113,6 +99,16 @@
 					</li>
 				</template>
 			<li>
+						<div class="container">
+							<a class="project-link" href="/pattern-generator/">
+								<img src="https://benjaminaster.com/pattern-generator/assets/icon.svg" alt="icon of Pattern Generator">
+								<h3 class="title">Pattern Generator</h3>
+								<p class="description">Generate random recursive patterns.</p>
+								<div class="bottom-gradient"></div>
+							</a>
+							
+						</div>
+					</li><li>
 						<div class="container">
 							<a class="project-link" href="https://www.npmjs.com/package/new-javascript">
 								<img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" alt="icon of TypeScript types for new JavaScript">
