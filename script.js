@@ -28,33 +28,41 @@ document.querySelector("button.email").addEventListener("click", function () {
 	});
 });
 
-
 {
 	const /** @type {HTMLCanvasElement} */ canvas = document.querySelector("canvas#background-canvas");
 	const context = canvas.getContext("2d");
 
 	{
-		const resize = () => [canvas.width, canvas.height] = [canvas.clientWidth, canvas.clientHeight];
+		const resize = () => {
+			canvas.width = canvas.clientWidth * window.devicePixelRatio;
+			canvas.height = canvas.clientHeight * window.devicePixelRatio;
+		}
 		resize();
 		window.addEventListener("resize", resize);
 	}
 
+	const initialSeed = Math.random();
+
 	const randomBySeed = (/** @type {number} */ a) => {
 		// Mulberry32 algorithm, copied from https://stackoverflow.com/a/47593316
-		let t = a += 0x6d_2b_79_f5;
+		let t = a += 0x6d_2b_79_f5 + initialSeed * 0x1_00;
 		t = Math.imul(t ^ t >>> 0xf, t | 1);
 		t ^= t + Math.imul(t ^ t >>> 7, t | 0x3d);
 		return ((t ^ t >>> 0xe) >>> 0) / 0x1_00_00_00_00;
 	}
 
-	let mouseX = -1000;
+	let mouseX = 1000;
 	let mouseY = -1000;
 
 	window.addEventListener("mousemove", ({ clientX, clientY }) => {
-		[mouseX, mouseY] = [clientX, clientY];
-	})
+		[mouseX, mouseY] = [clientX * window.devicePixelRatio, clientY * window.devicePixelRatio];
+	});
 
-	const distance = 100;
+	window.addEventListener("touchmove", ({ touches: [{ clientX, clientY }] }) => {
+		[mouseX, mouseY] = [clientX * window.devicePixelRatio, clientY * window.devicePixelRatio];
+	});
+
+	const distance = 100 * window.devicePixelRatio;
 	const verticalDistance = distance / 2 * Math.sqrt(3);
 	const maxOffset = distance / 4;
 
@@ -105,7 +113,7 @@ document.querySelector("button.email").addEventListener("click", function () {
 		}
 
 		context.strokeStyle = "black";
-		context.lineWidth = 10;
+		context.lineWidth = 10 * window.devicePixelRatio;
 
 		for (let row = 0; row < rows; row++) {
 			context.beginPath();
