@@ -12,13 +12,16 @@
 	<meta property="og:image" content="/media/favicon.png" />
 
 	<base href="/home/" />
+	
+	<title>Benjamin Aster</title>
 
 	<link rel="icon" href="/media/favicon.svg" type="image/svg+xml" />
 	<link rel="icon" href="/media/favicon.png" type="image/png" sizes="any" />
-	<link rel="stylesheet" href="./style.css" />
-	<link rel="canonical" href="https://benjaminaster.com" />
+	<link rel="canonical" href="https://benjaminaster.com/" />
 
-	<link rel="modulepreload" href="https://benjaminaster.com/pattern-generator/main.js" />
+	<link rel="stylesheet" href="./style.css" />
+
+	<script type="module" src="./script.js"></script>
 
 	<noscript>
 		<style>
@@ -28,15 +31,17 @@
 			}
 		</style>
 	</noscript>
-
-	<script type="module" src="./script.js"></script>
-
-	<title>Benjamin Aster</title>
 </head>
 
 <body>
 	<main>
-		<section aria-label="About me" class="about-me">
+		<p hidden id="browser-warning" data-nosnippet>
+			⚠&#xFE0E; <br />
+			You are using an outdated version of your browser.
+			Please update it to the latest version.
+		</p>
+
+		<section aria-label="About me" class="about-me awesome">
 			<img src="/media/favicon.svg" alt="icon" />
 			
 			<h1>Hi, I'm Benjamin Aster.</h1>
@@ -44,57 +49,43 @@
 			<p>
 				I'm an Austrian nerd doing silly things on the computer.
 			</p>
-			
-			<div class="bottom-gradient"></div>
 		</section>
-
-		<p hidden id="browser-warning">
-			⚠&#xFE0E; <br />
-			You are using an outdated version of your browser.
-			Please update it to the latest version.
-		</p>
 
 		<section aria-label="Contact and social media">
 			<address class="contact">
 				<ul>
-					<li>
+					<li class="awesome">
 						<a href="https://github.com/BenjaminAster" class="github">GitHub</a>
-						<div class="bottom-gradient"></div>
 					</li>
-					<li>
+					<li class="awesome">
 						<a href="https://twitter.com/Benjamin_Aster" class="twitter">Twitter</a>
-						<div class="bottom-gradient"></div>
 					</li>
-					<li>
+					<li class="awesome">
 						<a href="https://codepen.io/Benjamin_Aster" class="codepen">CodePen</a>
-						<div class="bottom-gradient"></div>
 					</li>
-					<li>
+					<li class="awesome">
 						<button class="email" aria-label="Click to reveal email address">
 							Email
 						</button>
 						<a hidden href="#"></a>
-						<div class="bottom-gradient"></div>
 					</li>
 				</ul>
 			</address>
 		</section>
 
 		<section aria-label="Projects" class="projects">
-			<h2>
+			<h2 class="awesome">
 				Projects:
-				<div class="bottom-gradient"></div>
 			</h2>
 
 			<ul>
 				<template>
 					<li>
-						<div class="container">
+						<div class="container awesome">
 							<a class="project-link">
 								<img />
 								<h3 class="title">&nbsp;</h3>
 								<p class="description">&nbsp;</p>
-								<div class="bottom-gradient"></div>
 							</a>
 							<a class="repository" title="View on GitHub" href></a>
 						</div>
@@ -103,6 +94,8 @@
 			</ul>
 		</section>
 	</main>
+
+	<canvas id="background-canvas"></canvas>
 </body>
 
 </html>

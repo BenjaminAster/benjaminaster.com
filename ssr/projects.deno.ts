@@ -1,20 +1,26 @@
 
 const projects: Record<string, string>[] = [
 	{
+		url: "/css-minecraft/",
+	},
+	{
+		url: "/2d-css-minecraft/",
+	},
+	{
 		url: "/pattern-generator/",
 	},
 	{
 		url: "https://www.npmjs.com/package/new-javascript",
 		image: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg",
 		title: "TypeScript types for new JavaScript",
-		description: "TypeScript type declarations for JavaScript stuff that isn't in TypeScript's standard type declarations",
+		description: "TypeScript type declarations for JavaScript stuff that isn't in TypeScript's standard type declarations.",
 		repository: "https://github.com/BenjaminAster/TypeScript-types-for-new-JavaScript",
 	},
 	{
 		url: "https://github.com/BenjaminAster/Brave-Talk-Bamboozler#readme",
 		image: "https://benjaminaster.github.io/Brave-Talk-Bamboozler/assets/icon.svg",
 		title: "Brave Talk Bamboozler",
-		description: "A Chrome extension that tricks Brave Talk into thinking you're using Brave",
+		description: "A Chrome extension that tricks Brave Talk into thinking you're using Brave.",
 		repository: "https://github.com/BenjaminAster/Brave-Talk-Bamboozler",
 	},
 	{
