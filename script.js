@@ -29,52 +29,57 @@ document.querySelector("button.email").addEventListener("click", function () {
 });
 
 {
-	const initialSeed = Math.random();
+	const /** @type {HTMLCanvasElement} */ backgroundCanvas = document.querySelector("canvas#background-canvas");
 
-	const randomBySeed = (/** @type {number} */ a) => {
-		// Mulberry32 algorithm, copied from https://stackoverflow.com/a/47593316
-		let t = a += 0x6d_2b_79_f5 + initialSeed * 0x1_00;
-		t = Math.imul(t ^ t >>> 0xf, t | 1);
-		t ^= t + Math.imul(t ^ t >>> 7, t | 0x3d);
-		return ((t ^ t >>> 0xe) >>> 0) / 0x1_00_00_00_00;
-	}
+	const backgroundOffscreen = backgroundCanvas.transferControlToOffscreen?.();
 
-	const /** @type {{ x: number, y: number, timestamp: number }[]} */ mousePositions = [];
-	let mouseX = 1000;
-	let mouseY = -1000;
+	const backgroundCanvasFunction = async (/** @type {{ devicePixelRatio: number }} */ { devicePixelRatio }) => {
 
-	const pointerMove = ({/** @type {number} */ x,/** @type {number} */ y }) => {
-		[mouseX, mouseY] = [x * window.devicePixelRatio, y * window.devicePixelRatio];
-		mousePositions.unshift({ x: mouseX, y: mouseY, timestamp: document.timeline.currentTime });
-	};
+		const initialSeed = Math.random();
 
-	window.addEventListener("mousemove", ({ clientX, clientY }) => {
-		pointerMove({ x: clientX, y: clientY });
-	});
-
-	window.addEventListener("touchmove", ({ touches: [{ clientX, clientY }] }) => {
-		pointerMove({ x: clientX, y: clientY });
-	});
-
-	{
-		const /** @type {HTMLCanvasElement} */ canvas = document.querySelector("canvas#background-canvas");
-		const context = canvas.getContext("2d");
-
-		{
-			const resize = () => {
-				canvas.width = canvas.clientWidth * window.devicePixelRatio;
-				canvas.height = canvas.clientHeight * window.devicePixelRatio;
-			}
-			resize();
-			window.addEventListener("resize", resize);
+		const randomBySeed = (/** @type {number} */ a) => {
+			// Mulberry32 algorithm, copied from https://stackoverflow.com/a/47593316
+			let t = a += 0x6d_2b_79_f5 + initialSeed * 0x1_00;
+			t = Math.imul(t ^ t >>> 0xf, t | 1);
+			t ^= t + Math.imul(t ^ t >>> 7, t | 0x3d);
+			return ((t ^ t >>> 0xe) >>> 0) / 0x1_00_00_00_00;
 		}
 
-		const distance = 100 * window.devicePixelRatio;
+		let mouseX = 1000;
+		let mouseY = -1000;
+
+		const messageListener = ({ type, mouseX: _mouseX, mouseY: _mouseY, width, height }) => {
+			if (type === "pointermove") {
+				mouseX = _mouseX;
+				mouseY = _mouseY;
+			} else if (type === "resize") {
+				canvas.width = width * devicePixelRatio;
+				canvas.height = height * devicePixelRatio;
+			}
+		};
+
+		let /** @type {{ canvas: OffscreenCanvas | HTMLCanvasElement, context: OffscreenCanvasRenderingContext2D | CanvasRenderingContext2D }} */ { canvas, context } = self.window
+			? { canvas: backgroundCanvas, context: backgroundCanvas.getContext("2d") }
+			: await new Promise((resolve) => {
+				self.addEventListener("message", ({ data }) => {
+					if (data.type === "transfer-offscreen") {
+						resolve({
+							context: /** @type {OffscreenCanvasRenderingContext2D} */ (data.canvas.getContext("2d")),
+							canvas: data.canvas,
+						});
+					} else {
+						messageListener(data);
+					}
+				});
+			});
+
+		const distance = 100 * devicePixelRatio;
 		const verticalDistance = distance / 2 * Math.sqrt(3);
 		const maxOffset = distance / 3;
 
 		const draw = (/** @type {number} */ time) => {
 			const t = performance.now();
+			// console.log(t)
 			context.fillStyle = "white";
 			context.lineCap = "round";
 			context.lineJoin = "round";
@@ -109,7 +114,8 @@ document.querySelector("button.email").addEventListener("click", function () {
 
 			for (let row = 0; row < rows - 1; row++) {
 				for (let triangleColumn = 0; triangleColumn < columns * 2 - 1; triangleColumn++) {
-					context.fillStyle = `hsl(${randomBySeed(row * columns * 2 + triangleColumn)}turn 100% 50%)`;
+					// context.fillStyle = `hsl(${randomBySeed(row * columns * 2 + triangleColumn)}turn 100% 50%)`;
+					context.fillStyle = `hsl(${randomBySeed(row * columns * 2 + triangleColumn)}turn 80% 70%)`;
 					const column = Math.floor(triangleColumn / 2);
 					context.beginPath();
 					context.moveTo(...points[row][column + (row % 2) * (triangleColumn % 2)]);
@@ -121,8 +127,8 @@ document.querySelector("button.email").addEventListener("click", function () {
 			}
 
 			context.strokeStyle = "black";
-			// context.lineWidth = 20 * window.devicePixelRatio;
-			context.lineWidth = 13 * window.devicePixelRatio;
+			context.lineWidth = 20 * devicePixelRatio;
+			// context.lineWidth = 13 * devicePixelRatio;
 			context.fillStyle = "black";
 
 			for (let row = 0; row < rows; row++) {
@@ -148,14 +154,15 @@ document.querySelector("button.email").addEventListener("click", function () {
 			for (let row = 0; row < rows; row++) {
 				for (let column = 0; column < points[row].length; column++) {
 					context.beginPath();
-					context.ellipse(...points[row][column], 15 * window.devicePixelRatio, 15 * window.devicePixelRatio, 0, 0, 2 * Math.PI);
+					// context.ellipse(...points[row][column], 15 * devicePixelRatio, 15 * devicePixelRatio, 0, 0, 2 * Math.PI);
+					context.ellipse(...points[row][column], 22 * devicePixelRatio, 22 * devicePixelRatio, 0, 0, 2 * Math.PI);
 					context.closePath();
 					context.fill();
 				}
 			}
 
 			context.strokeStyle = "white";
-			context.lineWidth = 2 * window.devicePixelRatio;
+			context.lineWidth = 2 * devicePixelRatio;
 			context.fillStyle = "black";
 
 			for (let row = 0; row < rows; row++) {
@@ -181,72 +188,141 @@ document.querySelector("button.email").addEventListener("click", function () {
 			for (let row = 0; row < rows; row++) {
 				for (let column = 0; column < points[row].length; column++) {
 					context.beginPath();
-					context.ellipse(...points[row][column], 9 * window.devicePixelRatio, 9 * window.devicePixelRatio, 0, 0, 2 * Math.PI);
+					context.ellipse(...points[row][column], 9 * devicePixelRatio, 9 * devicePixelRatio, 0, 0, 2 * Math.PI);
 					context.closePath();
 					context.fill();
 					context.stroke();
 				}
 			}
 
-			console.log(performance.now() - t);
+			// console.log(performance.now() - t);
 
-			window.requestAnimationFrame(draw);
+			self.requestAnimationFrame(draw);
 		}
 
-		window.requestAnimationFrame(draw);
-	}
+		self.requestAnimationFrame(draw);
 
-	{
-		const /** @type {HTMLCanvasElement} */ canvas = document.querySelector("canvas#foreground-canvas");
-		const context = canvas.getContext("2d");
+		return { postMessage: messageListener };
+	};
 
-		{
-			const resize = () => {
-				canvas.width = canvas.clientWidth * window.devicePixelRatio;
-				canvas.height = canvas.clientHeight * window.devicePixelRatio;
+	const backgroundCanvasWorker = backgroundOffscreen ? new Worker(
+		URL.createObjectURL(new Blob([
+			`(${backgroundCanvasFunction.toString()})(${JSON.stringify({
+				devicePixelRatio: window.devicePixelRatio,
+			})})`
+		], { type: "application/javascript" }
+		))
+	) : await backgroundCanvasFunction({ devicePixelRatio: window.devicePixelRatio });
+
+	if (backgroundOffscreen) backgroundCanvasWorker.postMessage(
+		{ type: "transfer-offscreen", canvas: backgroundOffscreen },
+		{ transfer: [backgroundOffscreen] },
+	);
+
+	const /** @type {HTMLCanvasElement} */ foregroundCanvas = document.querySelector("canvas#foreground-canvas");
+
+	const foregroundOffscreen = foregroundCanvas.transferControlToOffscreen?.();
+
+	const foregroundCanvasFunction = async (/** @type {{ devicePixelRatio: number }} */ { devicePixelRatio }) => {
+		const /** @type {{ x: number, y: number, timestamp: number }[]} */ mousePositions = [];
+
+		const messageListener = ({ type, mouseX, mouseY, width, height }) => {
+			if (type === "pointermove") {
+				mousePositions.unshift({ x: mouseX, y: mouseY, timestamp: performance.now() });
+			} else if (type === "resize") {
+				canvas.width = width * devicePixelRatio;
+				canvas.height = height * devicePixelRatio;
 			}
-			resize();
-			window.addEventListener("resize", resize);
-		}
+		};
 
-		// const /** @type {[number, number][]} */ mousePositions = [...new Array(60)].map(() => [1000, -1000]);
+		let /** @type {{ canvas: OffscreenCanvas | HTMLCanvasElement, context: OffscreenCanvasRenderingContext2D | CanvasRenderingContext2D }} */ { canvas, context } = self.window
+			? { canvas: foregroundCanvas, context: foregroundCanvas.getContext("2d") }
+			: await new Promise((resolve) => {
+				self.addEventListener("message", ({ data }) => {
+					if (data.type === "transfer-offscreen") {
+						resolve({
+							context: /** @type {OffscreenCanvasRenderingContext2D} */ (data.canvas.getContext("2d")),
+							canvas: data.canvas,
+						});
+					} else {
+						messageListener(data);
+					}
+				});
+			});
+
+		const duration = 2_000;
 
 		const draw = (/** @type {number} */ time) => {
-			while (document.timeline.currentTime - mousePositions.at(-1)?.timestamp > 1_000) mousePositions.pop();
+			while (performance.now() - mousePositions.at(-1)?.timestamp > duration) mousePositions.pop();
 
 			context.lineCap = "round";
 			context.lineJoin = "round";
 			context.clearRect(0, 0, canvas.width, canvas.height);
 
-			// context.lineWidth = 5 * window.devicePixelRatio;
-			// context.strokeStyle = "white";
-			// context.beginPath();
-			// context.moveTo(...mousePositions[0]);
-
-			// for (let index = 1; index < mousePositions.length; index++) {
-			// 	context.lineTo(...mousePositions[index]);
-			// }
-			// context.stroke();
-
-
-			for (const [index, { x, y, timestamp }] of mousePositions.entries()) {
+			for (const { x, y, timestamp } of mousePositions) {
 				context.lineWidth = 1;
-				const timeDelta = document.timeline.currentTime - timestamp;
-				const alpha = 1 - timeDelta / 1_000;
-				context.strokeStyle = `hsl(0 100% 100% / ${alpha})`;
+				const timeDelta = performance.now() - timestamp;
+				const alpha = 1 - timeDelta / duration;
+				context.strokeStyle = `hsl(0 100% 100% / ${alpha / 2})`;
 				context.fillStyle = `hsl(0 100% 100% / ${alpha / 10})`;
 				context.beginPath();
-				const radius = timeDelta * window.devicePixelRatio / 30;
+				const radius = (timeDelta + 500) * devicePixelRatio / 60;
 				context.ellipse(x, y, radius, radius, 0, 0, 2 * Math.PI);
 				context.closePath();
 				context.fill();
 				context.stroke();
 			}
 
-			window.requestAnimationFrame(draw);
+			self.requestAnimationFrame(draw);
 		}
 
-		window.requestAnimationFrame(draw);
+		self.requestAnimationFrame(draw);
+
+		return { postMessage: messageListener };
+	};
+
+	const foregroundCanvasWorker = foregroundOffscreen ? new Worker(
+		URL.createObjectURL(new Blob([
+			`(${foregroundCanvasFunction.toString()})(${JSON.stringify({
+				devicePixelRatio: window.devicePixelRatio,
+			})})`
+		], { type: "application/javascript" }))
+	) : await foregroundCanvasFunction({ devicePixelRatio: window.devicePixelRatio });
+
+	if (foregroundOffscreen) foregroundCanvasWorker.postMessage(
+		{ type: "transfer-offscreen", canvas: foregroundOffscreen },
+		{ transfer: [foregroundOffscreen] },
+	);
+
+	const pointerMove = (/** @type {{ x: number, y: number }} */ { x, y }) => {
+		const [mouseX, mouseY] = [x * window.devicePixelRatio, y * window.devicePixelRatio];
+		backgroundCanvasWorker.postMessage({ type: "pointermove", mouseX, mouseY });
+		foregroundCanvasWorker.postMessage({ type: "pointermove", mouseX, mouseY });
+	};
+
+	window.addEventListener("mousemove", ({ clientX, clientY }) => {
+		pointerMove({ x: clientX, y: clientY });
+	});
+
+	window.addEventListener("touchmove", ({ touches: [{ clientX, clientY }] }) => {
+		pointerMove({ x: clientX, y: clientY });
+	});
+
+	{
+		const resize = () => {
+			backgroundCanvasWorker.postMessage({
+				type: "resize",
+				width: backgroundCanvas.clientWidth,
+				height: backgroundCanvas.clientHeight,
+			});
+			foregroundCanvasWorker.postMessage({
+				type: "resize",
+				width: foregroundCanvas.clientWidth,
+				height: foregroundCanvas.clientHeight,
+			});
+		}
+		resize();
+		window.addEventListener("resize", resize);
 	}
 }
 
