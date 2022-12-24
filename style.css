@@ -110,6 +110,16 @@ canvas#background-canvas {
 	z-index: -1;
 }
 
+canvas#foreground-canvas {
+	position: fixed;
+	display: block;
+	inset: 0;
+	inline-size: 100%;
+	block-size: 100%;
+	z-index: 1;
+	pointer-events: none;
+}
+
 .awesome {
 	/* --backdrop-filter: saturate(150%) brightness(150%) blur(1.8rem); */
 	--backdrop-filter: saturate(150%) blur(1.8rem);
