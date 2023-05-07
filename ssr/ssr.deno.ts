@@ -35,6 +35,9 @@ const template = document.querySelector(".projects > ul > template");
 
 // console.log(template, template.firstElementChild, template.content);
 
+// const baseURL = "https://benjaminaster.com/";
+const baseURL = "http://localhost/";
+
 const cards = projects.map(() => {
 	const clone: Element = (template.cloneNode(true) as HTMLTemplateElement).content.firstElementChild;
 	document.querySelector(".projects ul")!.appendChild(clone);
@@ -45,8 +48,8 @@ await Promise.all(projects.map(async (project: Record<string, string>, index: nu
 	let htmlDocument: Document = undefined!;
 
 	if (!project.image || !project.title || !project.description) {
-		htmlDocument = new DOMParser().parseFromString(await (await window.fetch(
-			new URL(project.url, "https://benjaminaster.com/").href,
+		htmlDocument = new DOMParser().parseFromString(await (await globalThis.fetch(
+			new URL(project.url, baseURL).href,
 			{ cache: "reload" },
 		)).text(), "text/html")!;
 	}

@@ -148,51 +148,41 @@ canvas#foreground-canvas {
 	content: "";
 	--line-thickness: 2px;
 	--radius: var(--border-radius);
-	--_left-radius: var(--left-radius, var(--radius));
+	--_has-left-radius: var(--has-left-radius, 1);
+	--_left-radius: calc(var(--_has-left-radius) * var(--radius));
+	border: 2px solid transparent;
+	border-block-start-width: 0;
+	border-end-start-radius: var(--_left-radius);
+	border-end-end-radius: var(--radius);
+	border-inline-start-width: calc(var(--_has-left-radius) * var(--line-thickness));
 	position: absolute;
 	inset: auto 0 0;
 	block-size: var(--radius);
 	pointer-events: none;
 
-	background: linear-gradient(to right, var(--gradient-start), var(--gradient-end)) no-repeat;
+	background: linear-gradient(to right, var(--gradient-start), var(--gradient-end)) border-box no-repeat;
 
 	--mask:
 		conic-gradient(
 			at left var(--_left-radius) top 0,
 			white 210grad,
 			transparent 290grad
-		) 0 0 / 100% 100% no-repeat,
+		) 0 0 / 100% 100% no-repeat border-box,
 
 		conic-gradient(
 			at right var(--radius) top 0,
 			transparent 110grad,
 			white 190grad
-		) 0 0 / 100% 100% no-repeat,
+		) 0 0 / 100% 100% no-repeat border-box,
 
-		radial-gradient(
-			circle at top right,
-			transparent 0 calc(var(--radius) - var(--line-thickness) - .5px),
-			white calc(var(--radius) - var(--line-thickness) + .5px) calc(var(--radius) - .5px),
-			transparent calc(var(--radius) + .5px)
-		) 0 0 / var(--_left-radius) var(--radius) no-repeat,
+		linear-gradient(white, white) no-repeat padding-box,
 
-		linear-gradient(
-			white,
-			white
-		) var(--_left-radius) calc(var(--radius) - var(--line-thickness)) / calc(100% - var(--_left-radius) - var(--radius)) var(--line-thickness) 
-		no-repeat,
-
-		radial-gradient(
-			circle at top left,
-			transparent 0 calc(var(--radius) - var(--line-thickness) - .5px),
-			white calc(var(--radius) - var(--line-thickness) + .5px) calc(var(--radius) - .5px),
-			transparent calc(var(--radius) + .5px)
-		) 100% 0 / var(--radius) var(--radius) no-repeat;
+		linear-gradient(white, white) no-repeat border-box;
 	-webkit-mask: var(--mask);
 	mask: var(--mask);
 
-	-webkit-mask-composite: source-in, source-in, source-over, source-over, source-over;
-	mask-composite: intersect, intersect, add, add, add;
+	-webkit-mask-composite: source-in, source-in, source-out, source-over;
+	mask-composite: intersect, intersect, subtract, add;
 }
 
 .about-me {
@@ -319,7 +309,7 @@ canvas#foreground-canvas {
 
 .projects h2 {
 	--padding-inline: .8rem;
-	--left-radius: 0rem;
+	--has-left-radius: 0;
 	padding: .5rem var(--padding-inline);
 	padding-left: calc(var(--padding-inline) + var(--safe-area-inset-left));
 	inline-size: fit-content;
