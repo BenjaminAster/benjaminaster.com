@@ -56,7 +56,6 @@ body {
 	block-size: 100%;
 	position: relative;
 
-	-moz-text-size-adjust: none;
 	-webkit-text-size-adjust: none;
 	text-size-adjust: none;
 }
@@ -462,11 +461,13 @@ canvas#foreground-canvas {
 	position: relative;
 }
 
-.projects ul li a.project-link {
-	background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
-	-webkit-background-clip: text;
-	background-clip: text;
-	color: #fffb;
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+	.projects ul li a.project-link {
+		background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: #fffb;
+	}
 }
 
 @media (prefers-contrast: more) {

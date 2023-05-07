@@ -1,5 +1,25 @@
 
+/* 
+cd ssr
+deno run --unstable --allow-net --allow-read --allow-write=.. ./ssr.deno.ts
+*/
+
 const projects: Record<string, string>[] = [
+	{
+		url: "https://www.npmjs.com/package/better-typescript",
+		image: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg",
+		title: "Better TypeScript",
+		description: "Various TypeScript type definitions to make working with TypeScript more convenient.",
+		repository: "https://github.com/BenjaminAster/Better-TypeScript",
+	},
+	{
+		url: "/css-canvas/",
+	},
+	{
+		url: "/reflexive-view-source/",
+		title: "Reflexive view-source",
+		image: "/reflexive-view-source/assets/icon.svg",
+	},
 	{
 		url: "/css-minecraft/",
 	},

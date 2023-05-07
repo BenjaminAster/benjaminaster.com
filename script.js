@@ -1,4 +1,7 @@
 
+/// <reference lib="DOM" />
+/// <reference lib="DOM.Iterable" />
+/// <reference types="better-typescript" />
 
 {
 	// Polyfill for Safari < 15.4
@@ -29,7 +32,7 @@ document.querySelector("button.email").addEventListener("click", function () {
 });
 
 {
-	const /** @type {HTMLCanvasElement} */ backgroundCanvas = document.querySelector("canvas#background-canvas");
+	const backgroundCanvas = document.querySelector("canvas#background-canvas");
 
 	const backgroundOffscreen = backgroundCanvas.transferControlToOffscreen?.();
 
@@ -114,8 +117,8 @@ document.querySelector("button.email").addEventListener("click", function () {
 
 			for (let row = 0; row < rows - 1; row++) {
 				for (let triangleColumn = 0; triangleColumn < columns * 2 - 1; triangleColumn++) {
-					// context.fillStyle = `hsl(${randomBySeed(row * columns * 2 + triangleColumn)}turn 100% 50%)`;
-					context.fillStyle = `hsl(${randomBySeed(row * columns * 2 + triangleColumn)}turn 80% 70%)`;
+					context.fillStyle = `hsl(${randomBySeed(row * columns * 2 + triangleColumn)}turn 100% 50%)`;
+					// context.fillStyle = `hsl(${randomBySeed(row * columns * 2 + triangleColumn)}turn 80% 70%)`;
 					const column = Math.floor(triangleColumn / 2);
 					context.beginPath();
 					context.moveTo(...points[row][column + (row % 2) * (triangleColumn % 2)]);
@@ -127,8 +130,9 @@ document.querySelector("button.email").addEventListener("click", function () {
 			}
 
 			context.strokeStyle = "black";
-			context.lineWidth = 20 * devicePixelRatio;
+			// context.lineWidth = 20 * devicePixelRatio;
 			// context.lineWidth = 13 * devicePixelRatio;
+			context.lineWidth = 12 * devicePixelRatio;
 			context.fillStyle = "black";
 
 			for (let row = 0; row < rows; row++) {
@@ -151,49 +155,49 @@ document.querySelector("button.email").addEventListener("click", function () {
 				}
 			}
 
-			for (let row = 0; row < rows; row++) {
-				for (let column = 0; column < points[row].length; column++) {
-					context.beginPath();
-					// context.ellipse(...points[row][column], 15 * devicePixelRatio, 15 * devicePixelRatio, 0, 0, 2 * Math.PI);
-					context.ellipse(...points[row][column], 22 * devicePixelRatio, 22 * devicePixelRatio, 0, 0, 2 * Math.PI);
-					context.closePath();
-					context.fill();
-				}
-			}
+			// for (let row = 0; row < rows; row++) {
+			// 	for (let column = 0; column < points[row].length; column++) {
+			// 		context.beginPath();
+			// 		// context.ellipse(...points[row][column], 15 * devicePixelRatio, 15 * devicePixelRatio, 0, 0, 2 * Math.PI);
+			// 		context.ellipse(...points[row][column], 22 * devicePixelRatio, 22 * devicePixelRatio, 0, 0, 2 * Math.PI);
+			// 		context.closePath();
+			// 		context.fill();
+			// 	}
+			// }
 
-			context.strokeStyle = "white";
-			context.lineWidth = 2 * devicePixelRatio;
-			context.fillStyle = "black";
+			// context.strokeStyle = "white";
+			// context.lineWidth = 2 * devicePixelRatio;
+			// context.fillStyle = "black";
 
-			for (let row = 0; row < rows; row++) {
-				context.beginPath();
-				context.moveTo(...points[row][0])
-				for (let column = 1; column < points[row].length; column++) {
-					context.lineTo(...points[row][column]);
-				}
-				context.stroke();
-			}
+			// for (let row = 0; row < rows; row++) {
+			// 	context.beginPath();
+			// 	context.moveTo(...points[row][0])
+			// 	for (let column = 1; column < points[row].length; column++) {
+			// 		context.lineTo(...points[row][column]);
+			// 	}
+			// 	context.stroke();
+			// }
 
-			for (let column = 0; column < columns; column++) {
-				for (const pass of [0, 1]) {
-					context.beginPath();
-					context.moveTo(...points[0][column]);
-					for (let row = 1; row < rows; row++) {
-						context.lineTo(...points[row][column + pass * (row % 2)]);
-					}
-					context.stroke();
-				}
-			}
+			// for (let column = 0; column < columns; column++) {
+			// 	for (const pass of [0, 1]) {
+			// 		context.beginPath();
+			// 		context.moveTo(...points[0][column]);
+			// 		for (let row = 1; row < rows; row++) {
+			// 			context.lineTo(...points[row][column + pass * (row % 2)]);
+			// 		}
+			// 		context.stroke();
+			// 	}
+			// }
 
-			for (let row = 0; row < rows; row++) {
-				for (let column = 0; column < points[row].length; column++) {
-					context.beginPath();
-					context.ellipse(...points[row][column], 9 * devicePixelRatio, 9 * devicePixelRatio, 0, 0, 2 * Math.PI);
-					context.closePath();
-					context.fill();
-					context.stroke();
-				}
-			}
+			// for (let row = 0; row < rows; row++) {
+			// 	for (let column = 0; column < points[row].length; column++) {
+			// 		context.beginPath();
+			// 		context.ellipse(...points[row][column], 9 * devicePixelRatio, 9 * devicePixelRatio, 0, 0, 2 * Math.PI);
+			// 		context.closePath();
+			// 		context.fill();
+			// 		context.stroke();
+			// 	}
+			// }
 
 			// console.log(performance.now() - t);
 

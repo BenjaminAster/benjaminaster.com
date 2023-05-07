@@ -1,14 +1,16 @@
 
-import {
-	DOMParser,
-	type Element,
-	type Document,
-} from "https://deno.land/x/deno_dom@v0.1.34-alpha/deno-dom-wasm.ts";
+/// <reference lib="DOM" />
+/// <reference lib="DOM.Iterable" />
+/// <reference types="deno-types" />
+/// <reference types="better-typescript" />
+
+import { DOMParser } from "./domparser";
 
 import projects from "./projects.deno.ts";
 
 /* 
-deno run --unstable --allow-net --allow-read --allow-write=. ssr/ssr.deno.ts
+cd ssr
+deno run --unstable --allow-net --allow-read --allow-write=.. ./ssr.deno.ts
 */
 
 const document = new DOMParser().parseFromString(
@@ -34,7 +36,7 @@ const template = document.querySelector(".projects > ul > template");
 // console.log(template, template.firstElementChild, template.content);
 
 const cards = projects.map(() => {
-	const clone: Element = template.cloneNode(true).content.firstElementChild;
+	const clone: Element = (template.cloneNode(true) as HTMLTemplateElement).content.firstElementChild;
 	document.querySelector(".projects ul")!.appendChild(clone);
 	return clone;
 });
