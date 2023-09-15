@@ -16,10 +16,10 @@
 	--safe-area-inset-top: env(safe-area-inset-top, 0px);
 	--safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
 
-	--twitter-icon: url("https://abs.twimg.com/responsive-web/client-web/icon-svg.168b89d5.svg");
-	--github-icon: url("https://github.githubassets.com/pinned-octocat.svg");
-	--codepen-icon: url("https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg");
-	--email-icon: url("https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/24/outline/envelope.svg");
+	--twitter-icon: url("./assets/twitter.svg");
+	--github-icon: url("./assets/github.svg");
+	--codepen-icon: url("./assets/codepen.svg");
+	--email-icon: url("./assets/envelope.svg");
 
 	/* --noise-mask: see bottom of file, https://github.com/microsoft/vscode/issues/169873 */
 
@@ -36,6 +36,15 @@
 	position: fixed;
 	inset: 0;
 
+	color-scheme: dark light;
+	font-family: system-ui, sans-serif;
+	overflow-wrap: break-word;
+	line-height: 1.5;
+	
+	-webkit-text-size-adjust: none;
+	text-size-adjust: none;
+	-webkit-tap-highlight-color: transparent;
+
 	--javascript-enabled: var(--TRUE);
 
 	--gradient: linear-gradient(to right top, #000, #333);
@@ -50,14 +59,10 @@
 
 body {
 	margin: 0;
-	font-family: system-ui, sans-serif;
 	box-sizing: border-box;
 	overflow: hidden auto;
 	block-size: 100%;
 	position: relative;
-
-	-webkit-text-size-adjust: none;
-	text-size-adjust: none;
 }
 
 main {
@@ -542,10 +547,6 @@ canvas#foreground-canvas {
 }
 
 @media (hover: none) {
-	:any-link, button {
-		-webkit-tap-highlight-color: transparent;
-	}
-
 	:root {
 		overflow: revert;
 		position: revert;
