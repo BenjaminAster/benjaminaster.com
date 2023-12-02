@@ -2,6 +2,7 @@
 :root {
 	--transparent-background: #111a;
 	--shadow-color: #000a;
+	--background: black;
 
 	--TRUE: initial;
 	--FALSE: ;
@@ -36,7 +37,7 @@
 	position: fixed;
 	inset: 0;
 
-	color-scheme: dark light;
+	color-scheme: dark;
 	font-family: system-ui, sans-serif;
 	overflow-wrap: break-word;
 	line-height: 1.5;
@@ -48,7 +49,8 @@
 	--javascript-enabled: var(--TRUE);
 
 	--gradient: linear-gradient(to right top, #000, #333);
-	background: var(--theme-color, darkSlateBlue) none center center / cover no-repeat fixed;
+	/* background: var(--theme-color, darkSlateBlue) none center center / cover no-repeat fixed; */
+	background-color: var(--background);
 }
 
 @media (prefers-contrast: more) {
@@ -125,20 +127,20 @@ canvas#foreground-canvas {
 }
 
 .awesome {
-	/* --backdrop-filter: saturate(150%) brightness(150%) blur(1.8rem); */
-	--backdrop-filter: saturate(150%) blur(1.8rem);
-	/* --backdrop-filter: blur(1.8rem); */
-	-webkit-backdrop-filter: var(--backdrop-filter);
-	backdrop-filter: var(--backdrop-filter);
-	box-shadow: 0 .2rem 1rem var(--shadow-color);
+	/* --backdrop-filter: saturate(150%) blur(1.8rem); */
+	/* -webkit-backdrop-filter: var(--backdrop-filter); */
+	/* backdrop-filter: var(--backdrop-filter); */
+	/* box-shadow: 0 .2rem 1rem var(--shadow-color); */
+	border: 3px solid white;
 	--border-radius: 1rem;
 	border-radius: var(--border-radius);
-	background-color: var(--transparent-background);
+	/* background-color: var(--transparent-background); */
+	background-color: var(--background);
 	position: relative;
 }
 
 .awesome::before {
-	content: "";
+	/* content: "";
 	z-index: -1;
 	position: absolute;
 	inset: 0;
@@ -146,11 +148,21 @@ canvas#foreground-canvas {
 	opacity: .6;
 	-webkit-mask: var(--noise-mask);
 	mask: var(--noise-mask);
-	border-radius: inherit;
+	border-radius: inherit; */
 }
 
 .awesome::after {
 	content: "";
+	pointer-events: none;
+	position: absolute;
+	border-radius: 99vmax;
+	inset: auto 0 0;
+	margin: 12px;
+	block-size: 3px;
+	/* background-color: var(--accent); */
+	background-image: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+
+	/* content: "";
 	--line-thickness: 2px;
 	--radius: var(--border-radius);
 	--_has-left-radius: var(--has-left-radius, 1);
@@ -187,7 +199,7 @@ canvas#foreground-canvas {
 	mask: var(--mask);
 
 	-webkit-mask-composite: source-in, source-in, source-out, source-over;
-	mask-composite: intersect, intersect, subtract, add;
+	mask-composite: intersect, intersect, subtract, add; */
 }
 
 .about-me {
@@ -345,6 +357,7 @@ canvas#foreground-canvas {
 
 .projects ul li .container {
 	transform-origin: var(--transform-origin);
+	/* border-color: color-mix(in srgb, var(--accent, white) 50%, white); */
 }
 
 .projects ul li:hover .container {
@@ -456,14 +469,14 @@ canvas#foreground-canvas {
 	position: relative;
 }
 
-@supports (background-clip: text) or (-webkit-background-clip: text) {
+/* @supports (background-clip: text) or (-webkit-background-clip: text) {
 	.projects ul li a.project-link {
 		background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
 		-webkit-background-clip: text;
 		background-clip: text;
 		color: #fffb;
 	}
-}
+} */
 
 @media (prefers-contrast: more) {
 	.projects ul li a.project-link {
@@ -475,31 +488,37 @@ canvas#foreground-canvas {
 :is(.projects, .contact) ul li:nth-of-type(6n + 1) {
 	--gradient-start: var(--gradient-color-0);
 	--gradient-end: var(--gradient-color-1);
+	--accent: var(--gradient-color-0);
 }
 
 :is(.projects, .contact) ul li:nth-of-type(6n + 2) {
 	--gradient-start: var(--gradient-color-1);
 	--gradient-end: var(--gradient-color-2);
+	--accent: var(--gradient-color-1);
 }
 
 :is(.projects, .contact) ul li:nth-of-type(6n + 3) {
 	--gradient-start: var(--gradient-color-2);
 	--gradient-end: var(--gradient-color-3);
+	--accent: var(--gradient-color-2);
 }
 
 :is(.projects, .contact) ul li:nth-of-type(6n + 4) {
 	--gradient-start: var(--gradient-color-3);
 	--gradient-end: var(--gradient-color-4);
+	--accent: var(--gradient-color-3);
 }
 
 :is(.projects, .contact) ul li:nth-of-type(6n + 5) {
 	--gradient-start: var(--gradient-color-4);
 	--gradient-end: var(--gradient-color-5);
+	--accent: var(--gradient-color-4);
 }
 
 :is(.projects, .contact) ul li:nth-of-type(6n + 6) {
 	--gradient-start: var(--gradient-color-5);
 	--gradient-end: var(--gradient-color-0);
+	--accent: var(--gradient-color-5);
 }
 
 .projects ul li a p {

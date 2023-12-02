@@ -115,25 +115,25 @@ document.querySelector("button.email").addEventListener("click", function () {
 				}
 			}
 
-			for (let row = 0; row < rows - 1; row++) {
-				for (let triangleColumn = 0; triangleColumn < columns * 2 - 1; triangleColumn++) {
-					context.fillStyle = `hsl(${randomBySeed(row * columns * 2 + triangleColumn)}turn 100% 50%)`;
-					// context.fillStyle = `hsl(${randomBySeed(row * columns * 2 + triangleColumn)}turn 80% 70%)`;
-					const column = Math.floor(triangleColumn / 2);
-					context.beginPath();
-					context.moveTo(...points[row][column + (row % 2) * (triangleColumn % 2)]);
-					context.lineTo(...points[row + 1 - (row + triangleColumn) % 2][column + 1]);
-					context.lineTo(...points[row + 1][column + (1 - row % 2) * (triangleColumn % 2)]);
-					context.closePath();
-					context.fill();
-				}
-			}
+			// for (let row = 0; row < rows - 1; row++) {
+			// 	for (let triangleColumn = 0; triangleColumn < columns * 2 - 1; triangleColumn++) {
+			// 		context.fillStyle = `hsl(${randomBySeed(row * columns * 2 + triangleColumn)}turn 100% 50%)`;
+			// 		// context.fillStyle = `hsl(${randomBySeed(row * columns * 2 + triangleColumn)}turn 80% 70%)`;
+			// 		const column = Math.floor(triangleColumn / 2);
+			// 		context.beginPath();
+			// 		context.moveTo(...points[row][column + (row % 2) * (triangleColumn % 2)]);
+			// 		context.lineTo(...points[row + 1 - (row + triangleColumn) % 2][column + 1]);
+			// 		context.lineTo(...points[row + 1][column + (1 - row % 2) * (triangleColumn % 2)]);
+			// 		context.closePath();
+			// 		context.fill();
+			// 	}
+			// }
 
-			context.strokeStyle = "black";
+			context.strokeStyle = "white";
 			// context.lineWidth = 20 * devicePixelRatio;
 			// context.lineWidth = 13 * devicePixelRatio;
-			context.lineWidth = 12 * devicePixelRatio;
-			context.fillStyle = "black";
+			context.lineWidth = 3.5 * devicePixelRatio;
+			// context.fillStyle = "black";
 
 			for (let row = 0; row < rows; row++) {
 				context.beginPath();
@@ -280,7 +280,7 @@ document.querySelector("button.email").addEventListener("click", function () {
 			self.requestAnimationFrame(draw);
 		}
 
-		self.requestAnimationFrame(draw);
+		// self.requestAnimationFrame(draw);
 
 		return { postMessage: messageListener };
 	};
