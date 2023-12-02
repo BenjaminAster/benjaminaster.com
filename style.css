@@ -9,7 +9,7 @@
 	text-size-adjust: none;
 	-webkit-tap-highlight-color: transparent;
 
-	--transparent-background: #111a;
+	--transparent-background: #1119;
 	--shadow-color: #000a;
 
 	--scrollbar-start-color: tomato;
@@ -56,7 +56,6 @@ body {
 	box-sizing: border-box;
 	overflow: auto;
 	block-size: 100%;
-	/* position: relative; */
 }
 
 main {
@@ -70,8 +69,7 @@ main {
 	gap: 2rem;
 }
 
-/* Arabic (ar), Hebrew (iw), Pashto (ps), Persian (fa), Sindhi (sd), Urdu (ur), Uyghur (ug), Yiddish (yi) */
-:root:is(:lang(ar), :lang(iw), :lang(ps), :lang(fa), :lang(sd), :lang(ur), :lang(ug), :lang(yi)) {
+:root.translated-rtl {
 	direction: rtl;
 }
 
@@ -83,20 +81,14 @@ main {
 	font-weight: 600;
 }
 
-:where(button) {
-	font-family: unset;
-	font-size: unset;
-	font-weight: unset;
-	background: unset;
-	border: unset;
-	padding: unset;
-	color: unset;
+button, a {
+	all: unset;
+	outline: revert;
 	cursor: pointer;
 }
 
-:where(a) {
-	cursor: pointer;
-	color: unset;
+[hidden] {
+	display: none;
 }
 
 canvas#background-canvas {
@@ -119,9 +111,9 @@ canvas#foreground-canvas {
 }
 
 .awesome {
-	/* --backdrop-filter: saturate(150%) brightness(150%) blur(1.8rem); */
-	--backdrop-filter: saturate(150%) blur(1.8rem);
-	/* --backdrop-filter: blur(1.8rem); */
+	/* --backdrop-filter: saturate(150%) blur(1.8rem); */
+	/* --backdrop-filter: saturate(120%) blur(1.5rem); */
+	--backdrop-filter: blur(1.5rem);
 	-webkit-backdrop-filter: var(--backdrop-filter);
 	backdrop-filter: var(--backdrop-filter);
 	box-shadow: 0 .1rem 1rem var(--shadow-color);
@@ -263,12 +255,9 @@ canvas#foreground-canvas {
 
 .contact ul li > :is(a, button):first-child::before {
 	content: "";
-	-webkit-mask-repeat: no-repeat;
-	mask-repeat: no-repeat;
-	-webkit-mask-size: contain;
-	mask-size: contain;
-	-webkit-mask-image: var(--mask-image);
-	mask-image: var(--mask-image);
+	--mask: var(--mask-image) center / contain no-repeat;
+	-webkit-mask: var(--mask);
+	mask: var(--mask);
 	display: inline-block;
 	block-size: 1.3rem;
 	aspect-ratio: 1;
@@ -328,84 +317,19 @@ canvas#foreground-canvas {
 }
 
 @media (hover) {
-	.projects ul li {
-		/* --play-state: paused; */
-		/* animation: 1ms var(--play-state) enable-animation; */
-		/* --animation: var(--animation-duration) ease-in-out wiggle; */
-	}
-
 	.projects ul li:hover {
-		/* --play-state: running; */
 		translate: 0 -.5rem;
 	}
 
-	.projects ul li .container {
-		/* transform-origin: var(--transform-origin); */
-	}
-
-	.projects ul li:hover .container {
-		/* rotate: 5grad; */
-	}
-
 	@media (prefers-reduced-motion: no-preference) {
-		.projects ul li .container {
-			/* transition: rotate 80ms; */
-		}
 		.projects ul li {
-			transition: translate 100ms;
+			transition: translate .5s;
 		}
-		
-		.projects ul li:not(:hover) .container {
-			/* animation: var(--animation); */
+
+		.projects ul li:hover {
+			transition-duration: .1s;
 		}
 	}
-}
-
-@keyframes enable-animation {
-	from {
-		--animation: none;
-	}
-}
-
-@keyframes wiggle {
-	0% {
-		rotate: 5grad;
-	}
-	20% {
-		rotate: -4grad;
-	}
-	40% {
-		rotate: 3grad;
-	}
-	60% {
-		rotate: -2grad;
-	}
-	80% {
-		rotate: 1grad;
-	}
-	100% {
-		rotate: 0grad;
-	}
-}
-
-.projects ul li:nth-of-type(4n + 1) {
-	--transform-origin: bottom center;
-	--animation-duration: 600ms;
-}
-
-.projects ul li:nth-of-type(4n + 2) {
-	--transform-origin: center left;
-	--animation-duration: 700ms;
-}
-
-.projects ul li:nth-of-type(4n + 3) {
-	--transform-origin: top center;
-	--animation-duration: 900ms;
-}
-
-.projects ul li:nth-of-type(4n + 4) {
-	--transform-origin: center right;
-	--animation-duration: 800ms;
 }
 
 .projects ul li > .container {
@@ -431,13 +355,9 @@ canvas#foreground-canvas {
 
 .projects ul li a.repository::before {
 	content: "";
-	-webkit-mask-repeat: no-repeat;
-	mask-repeat: no-repeat;
-	-webkit-mask-size: contain;
-	mask-size: contain;
-	--mask-image: var(--github-icon);
-	-webkit-mask-image: var(--mask-image);
-	mask-image: var(--mask-image);
+	--mask: var(--github-icon) center / contain no-repeat;
+	-webkit-mask: var(--mask);
+	mask: var(--mask);
 	display: block;
 	block-size: 1.7rem;
 	aspect-ratio: 1;
@@ -561,7 +481,7 @@ canvas#foreground-canvas {
 	--noise-mask: url('data:image/svg+xml, \
 		<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"> \
 			<filter id="noise" x="0%" y="0%" width="100%" height="100%"> \
-				<feTurbulence type="fractalNoise" baseFrequency="0.8" /> \
+				<feTurbulence type="fractalNoise" baseFrequency="0.99" /> \
 			</filter> \
 			<rect x="0%" y="0%" width="100%" height="100%" filter="url(%23noise)" /> \
 		</svg> \
