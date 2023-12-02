@@ -12,8 +12,8 @@
 	
 	<title>Benjamin Aster</title>
 
-	<link rel="icon" href="/media/favicon.png" type="image/png" sizes="144x144">
 	<link rel="icon" href="/media/favicon.svg" type="image/svg+xml" sizes="any">
+	<link rel="icon" href="/media/favicon.png" type="image/png" sizes="144x144">
 
 	<link rel="canonical" href="https://benjaminaster.com/">
 
@@ -21,19 +21,10 @@
 
 	<script type="module" src="./script.js"></script>
 
-	<link rel="preload" as="image" href="./assets/twitter.svg">
-	<link rel="preload" as="image" href="./assets/github.svg">
-	<link rel="preload" as="image" href="./assets/codepen.svg">
-	<link rel="preload" as="image" href="./assets/envelope.svg">
-
-	<noscript>
-		<style>
-			:root {
-				--background-image: url("https://source.unsplash.com/collection/1912928/1600x900");
-				--javascript-enabled: var(--FALSE);
-			}
-		</style>
-	</noscript>
+	<link rel="preload" as="image" crossorigin="" href="./assets/twitter.svg">
+	<link rel="preload" as="image" crossorigin="" href="./assets/github.svg">
+	<link rel="preload" as="image" crossorigin="" href="./assets/codepen.svg">
+	<link rel="preload" as="image" crossorigin="" href="./assets/envelope.svg">
 </head>
 
 <body>
@@ -95,6 +86,24 @@
 					</li>
 				</template>
 			<li>
+						<div class="container awesome">
+							<a class="project-link" href="/ray-tracer/">
+								<img src="https://benjaminaster.com/ray-tracer/assets/icon.svg" alt="icon of WebGPU Ray Tracer">
+								<h3 class="title">WebGPU Ray Tracer</h3>
+								<p class="description">A ray tracer made with WebGPU</p>
+							</a>
+							<a class="repository" title="View on GitHub" href="https://github.com/BenjaminAster/ray-tracer"></a>
+						</div>
+					</li><li>
+						<div class="container awesome">
+							<a class="project-link" href="/pamm/">
+								<img src="https://benjaminaster.com/pamm/assets/icon.png" alt="icon of PAMM">
+								<h3 class="title">PAMM</h3>
+								<p class="description">Pretty Awesome Math Markup – A user-friendly LaTeX alternative with a live editor</p>
+							</a>
+							<a class="repository" title="View on GitHub" href="https://github.com/BenjaminAster/PAMM"></a>
+						</div>
+					</li><li>
 						<div class="container awesome">
 							<a class="project-link" href="/webindex/">
 								<img src="https://benjaminaster.com/webindex/assets/icon.svg" alt="icon of Index of web-related technical information">
@@ -466,9 +475,6 @@
 					</li></ul>
 		</section>
 	</main>
-
-	<canvas id="background-canvas"></canvas>
-	<canvas id="foreground-canvas"></canvas>
 
 
 

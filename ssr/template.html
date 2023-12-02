@@ -14,8 +14,8 @@
 	
 	<title>Benjamin Aster</title>
 
-	<link rel="icon" href="/media/favicon.png" type="image/png" sizes="144x144" />
 	<link rel="icon" href="/media/favicon.svg" type="image/svg+xml" sizes="any" />
+	<link rel="icon" href="/media/favicon.png" type="image/png" sizes="144x144" />
 
 	<link rel="canonical" href="https://benjaminaster.com/" />
 
@@ -23,19 +23,10 @@
 
 	<script type="module" src="./script.js"></script>
 
-	<link rel="preload" as="image" href="./assets/twitter.svg" />
-	<link rel="preload" as="image" href="./assets/github.svg" />
-	<link rel="preload" as="image" href="./assets/codepen.svg" />
-	<link rel="preload" as="image" href="./assets/envelope.svg" />
-
-	<noscript>
-		<style>
-			:root {
-				--background-image: url("https://source.unsplash.com/collection/1912928/1600x900");
-				--javascript-enabled: var(--FALSE);
-			}
-		</style>
-	</noscript>
+	<link rel="preload" as="image" crossorigin href="./assets/twitter.svg" />
+	<link rel="preload" as="image" crossorigin href="./assets/github.svg" />
+	<link rel="preload" as="image" crossorigin href="./assets/codepen.svg" />
+	<link rel="preload" as="image" crossorigin href="./assets/envelope.svg" />
 </head>
 
 <body>
@@ -99,9 +90,6 @@
 			</ul>
 		</section>
 	</main>
-
-	<canvas id="background-canvas"></canvas>
-	<canvas id="foreground-canvas"></canvas>
 </body>
 
 </html>

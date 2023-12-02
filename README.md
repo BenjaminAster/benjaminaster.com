@@ -3,5 +3,4 @@
 
 The homepage of [benjaminaster.com](https://benjaminaster.com)
 
-![screenshot of benjaminaster.com](./assets/screenshot.webp)
-
+![screenshot of benjaminaster.com](./assets/screenshot.png)

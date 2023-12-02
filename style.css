@@ -1,13 +1,16 @@
 
 :root {
+	color-scheme: dark;
+	font-family: system-ui, sans-serif;
+	overflow-wrap: break-word;
+	line-height: 1.5;
+
+	-webkit-text-size-adjust: none;
+	text-size-adjust: none;
+	-webkit-tap-highlight-color: transparent;
+
 	--transparent-background: #111a;
 	--shadow-color: #000a;
-	--background: black;
-
-	--TRUE: initial;
-	--FALSE: ;
-
-	--sqrt-2: 1.414213562;
 
 	--scrollbar-start-color: tomato;
 	--scrollbar-end-color: orange;
@@ -22,7 +25,7 @@
 	--codepen-icon: url("./assets/codepen.svg");
 	--email-icon: url("./assets/envelope.svg");
 
-	/* --noise-mask: see bottom of file, https://github.com/microsoft/vscode/issues/169873 */
+	/* --noise-mask: see bottom of file (https://github.com/microsoft/vscode/issues/169873) */
 
 	--gradient-color-0: tomato;
 	--gradient-color-1: yellow;
@@ -31,26 +34,15 @@
 	--gradient-color-4: dodgerBlue;
 	--gradient-color-5: magenta;
 
+	--gradient: linear-gradient(to right top, #000, #333);
+
 	color: white;
 	scrollbar-color: var(--scrollbar-start-color) transparent;
 	overflow: hidden;
-	position: fixed;
-	inset: 0;
+	block-size: 100%;
 
-	color-scheme: dark;
-	font-family: system-ui, sans-serif;
-	overflow-wrap: break-word;
-	line-height: 1.5;
-	
-	-webkit-text-size-adjust: none;
-	text-size-adjust: none;
-	-webkit-tap-highlight-color: transparent;
-
-	--javascript-enabled: var(--TRUE);
-
-	--gradient: linear-gradient(to right top, #000, #333);
-	/* background: var(--theme-color, darkSlateBlue) none center center / cover no-repeat fixed; */
-	background-color: var(--background);
+	/* source: https://www.urlaubstracker.de/wp-content/uploads/2016/12/salzburg_winter_nacht.jpg */
+	background: url("./assets/salzburg_winter_nacht.jpg") 75% 30% / cover no-repeat fixed;
 }
 
 @media (prefers-contrast: more) {
@@ -62,9 +54,9 @@
 body {
 	margin: 0;
 	box-sizing: border-box;
-	overflow: hidden auto;
+	overflow: auto;
 	block-size: 100%;
-	position: relative;
+	/* position: relative; */
 }
 
 main {
@@ -127,20 +119,20 @@ canvas#foreground-canvas {
 }
 
 .awesome {
-	/* --backdrop-filter: saturate(150%) blur(1.8rem); */
-	/* -webkit-backdrop-filter: var(--backdrop-filter); */
-	/* backdrop-filter: var(--backdrop-filter); */
-	/* box-shadow: 0 .2rem 1rem var(--shadow-color); */
-	border: 3px solid white;
+	/* --backdrop-filter: saturate(150%) brightness(150%) blur(1.8rem); */
+	--backdrop-filter: saturate(150%) blur(1.8rem);
+	/* --backdrop-filter: blur(1.8rem); */
+	-webkit-backdrop-filter: var(--backdrop-filter);
+	backdrop-filter: var(--backdrop-filter);
+	box-shadow: 0 .1rem 1rem var(--shadow-color);
 	--border-radius: 1rem;
 	border-radius: var(--border-radius);
-	/* background-color: var(--transparent-background); */
-	background-color: var(--background);
+	background-color: var(--transparent-background);
 	position: relative;
 }
 
 .awesome::before {
-	/* content: "";
+	content: "";
 	z-index: -1;
 	position: absolute;
 	inset: 0;
@@ -148,21 +140,11 @@ canvas#foreground-canvas {
 	opacity: .6;
 	-webkit-mask: var(--noise-mask);
 	mask: var(--noise-mask);
-	border-radius: inherit; */
+	border-radius: inherit;
 }
 
 .awesome::after {
 	content: "";
-	pointer-events: none;
-	position: absolute;
-	border-radius: 99vmax;
-	inset: auto 0 0;
-	margin: 12px;
-	block-size: 3px;
-	/* background-color: var(--accent); */
-	background-image: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
-
-	/* content: "";
 	--line-thickness: 2px;
 	--radius: var(--border-radius);
 	--_has-left-radius: var(--has-left-radius, 1);
@@ -199,7 +181,7 @@ canvas#foreground-canvas {
 	mask: var(--mask);
 
 	-webkit-mask-composite: source-in, source-in, source-out, source-over;
-	mask-composite: intersect, intersect, subtract, add; */
+	mask-composite: intersect, intersect, subtract, add;
 }
 
 .about-me {
@@ -345,32 +327,37 @@ canvas#foreground-canvas {
 	gap: 1.5rem;
 }
 
-.projects ul li {
-	--play-state: paused;
-	animation: 1ms var(--play-state) enable-animation;
-	--animation: var(--animation-duration) ease-in-out wiggle;
-}
-
-.projects ul li:hover {
-	--play-state: running;
-}
-
-.projects ul li .container {
-	transform-origin: var(--transform-origin);
-	/* border-color: color-mix(in srgb, var(--accent, white) 50%, white); */
-}
-
-.projects ul li:hover .container {
-	rotate: 5grad;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-	.projects ul li .container {
-		transition: rotate 80ms;
+@media (hover) {
+	.projects ul li {
+		/* --play-state: paused; */
+		/* animation: 1ms var(--play-state) enable-animation; */
+		/* --animation: var(--animation-duration) ease-in-out wiggle; */
 	}
-	
-	.projects ul li:not(:hover) .container {
-		animation: var(--animation);
+
+	.projects ul li:hover {
+		/* --play-state: running; */
+		translate: 0 -.5rem;
+	}
+
+	.projects ul li .container {
+		/* transform-origin: var(--transform-origin); */
+	}
+
+	.projects ul li:hover .container {
+		/* rotate: 5grad; */
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.projects ul li .container {
+			/* transition: rotate 80ms; */
+		}
+		.projects ul li {
+			transition: translate 100ms;
+		}
+		
+		.projects ul li:not(:hover) .container {
+			/* animation: var(--animation); */
+		}
 	}
 }
 
@@ -469,14 +456,14 @@ canvas#foreground-canvas {
 	position: relative;
 }
 
-/* @supports (background-clip: text) or (-webkit-background-clip: text) {
+@supports (background-clip: text) or (-webkit-background-clip: text) {
 	.projects ul li a.project-link {
 		background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
 		-webkit-background-clip: text;
 		background-clip: text;
 		color: #fffb;
 	}
-} */
+}
 
 @media (prefers-contrast: more) {
 	.projects ul li a.project-link {
@@ -488,37 +475,31 @@ canvas#foreground-canvas {
 :is(.projects, .contact) ul li:nth-of-type(6n + 1) {
 	--gradient-start: var(--gradient-color-0);
 	--gradient-end: var(--gradient-color-1);
-	--accent: var(--gradient-color-0);
 }
 
 :is(.projects, .contact) ul li:nth-of-type(6n + 2) {
 	--gradient-start: var(--gradient-color-1);
 	--gradient-end: var(--gradient-color-2);
-	--accent: var(--gradient-color-1);
 }
 
 :is(.projects, .contact) ul li:nth-of-type(6n + 3) {
 	--gradient-start: var(--gradient-color-2);
 	--gradient-end: var(--gradient-color-3);
-	--accent: var(--gradient-color-2);
 }
 
 :is(.projects, .contact) ul li:nth-of-type(6n + 4) {
 	--gradient-start: var(--gradient-color-3);
 	--gradient-end: var(--gradient-color-4);
-	--accent: var(--gradient-color-3);
 }
 
 :is(.projects, .contact) ul li:nth-of-type(6n + 5) {
 	--gradient-start: var(--gradient-color-4);
 	--gradient-end: var(--gradient-color-5);
-	--accent: var(--gradient-color-4);
 }
 
 :is(.projects, .contact) ul li:nth-of-type(6n + 6) {
 	--gradient-start: var(--gradient-color-5);
 	--gradient-end: var(--gradient-color-0);
-	--accent: var(--gradient-color-5);
 }
 
 .projects ul li a p {
@@ -538,7 +519,7 @@ canvas#foreground-canvas {
 }
 
 ::-webkit-scrollbar {
-	inline-size: 1rem;
+	inline-size: 11px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -557,28 +538,16 @@ canvas#foreground-canvas {
 	background-color: var(--scrollbar-end-color);
 }
 
-::-webkit-scrollbar-button,
-::-webkit-scrollbar-thumb {
-	block-size: 1rem;
-	border: .25rem solid transparent;
-	border-radius: .5rem;
+::-webkit-scrollbar-button, ::-webkit-scrollbar-thumb {
+	block-size: 11px;
+	border: 3px solid transparent;
+	border-radius: 6px;
 	background-clip: padding-box;
 }
 
 @media (hover: none) {
-	:root {
-		overflow: revert;
-		position: revert;
-		inset: revert;
-	}
-
-	body {
-		position: revert;
-		overflow: revert;
-		block-size: revert;
-
-		min-block-size: 100vh;
-		min-block-size: 100dvb;
+	:root, body {
+		overflow: unset;
 	}
 }
 
