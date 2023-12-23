@@ -9,8 +9,7 @@ import { DOMParser } from "./domparser";
 import projects from "./projects.deno.ts";
 
 /* 
-cd ssr
-deno run --unstable --allow-net --allow-read --allow-write=.. ./ssr.deno.ts
+deno run --unstable --allow-net --allow-read --allow-write=.. ssr/ssr.deno.ts
 */
 
 const document = new DOMParser().parseFromString(

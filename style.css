@@ -34,15 +34,20 @@
 	--gradient-color-4: dodgerBlue;
 	--gradient-color-5: magenta;
 
-	--gradient: linear-gradient(to right top, #000, #333);
-
 	color: white;
-	scrollbar-color: var(--scrollbar-start-color) transparent;
 	overflow: hidden;
 	block-size: 100%;
 
-	/* source: https://www.urlaubstracker.de/wp-content/uploads/2016/12/salzburg_winter_nacht.jpg */
-	background: url("./assets/salzburg_winter_nacht.jpg") 75% 30% / cover no-repeat fixed;
+	--background-color: royalblue;
+	background-color: var(--background-color);
+}
+
+@supports not selector(::-webkit-scrollbar) {
+	@media (hover) {
+		:root {
+			scrollbar-color: var(--scrollbar-start-color) transparent;
+		}
+	}
 }
 
 @media (prefers-contrast: more) {
@@ -51,11 +56,41 @@
 	}
 }
 
+:root.loading {
+	--circle: radial-gradient(circle at 100px 100px, white 0 70px, transparent 71px);
+	animation: 2s linear infinite move-circles;
+	background:
+		var(--circle) 0 0 / 200px 400px repeat,
+		var(--circle) 0 200px / 200px 400px repeat;
+	background-color: var(--background-color);
+}
+
+@keyframes move-circles {
+	from {
+		background-position-x: 0px, 200px;
+	}
+	to {
+		background-position-x: 200px, 0px;
+	}
+}
+
 body {
 	margin: 0;
 	box-sizing: border-box;
 	overflow: auto;
 	block-size: 100%;
+}
+
+img#background-image {
+	display: block;
+	position: fixed;
+	inset: 0 0 auto;
+	inline-size: 100%;
+	block-size: 100vh;
+	block-size: 100lvb;
+	object-fit: cover;
+	object-position: 75% 30%;
+	z-index: -1;
 }
 
 main {
@@ -91,28 +126,7 @@ button, a {
 	display: none;
 }
 
-canvas#background-canvas {
-	position: fixed;
-	display: block;
-	inset: 0;
-	inline-size: 100%;
-	block-size: 100%;
-	z-index: -1;
-}
-
-canvas#foreground-canvas {
-	position: fixed;
-	display: block;
-	inset: 0;
-	inline-size: 100%;
-	block-size: 100%;
-	z-index: 1;
-	pointer-events: none;
-}
-
 .awesome {
-	/* --backdrop-filter: saturate(150%) blur(1.8rem); */
-	/* --backdrop-filter: saturate(120%) blur(1.5rem); */
 	--backdrop-filter: blur(1.5rem);
 	-webkit-backdrop-filter: var(--backdrop-filter);
 	backdrop-filter: var(--backdrop-filter);
@@ -129,7 +143,7 @@ canvas#foreground-canvas {
 	position: absolute;
 	inset: 0;
 	background-color: var(--transparent-background);
-	opacity: .6;
+	opacity: .7;
 	-webkit-mask: var(--noise-mask);
 	mask: var(--noise-mask);
 	border-radius: inherit;
@@ -141,11 +155,10 @@ canvas#foreground-canvas {
 	--radius: var(--border-radius);
 	--_has-left-radius: var(--has-left-radius, 1);
 	--_left-radius: calc(var(--_has-left-radius) * var(--radius));
-	border: 2px solid transparent;
-	border-block-start-width: 0;
+	border: 0 solid transparent;
+	border-block-end-width: 2px;
 	border-end-start-radius: var(--_left-radius);
 	border-end-end-radius: var(--radius);
-	border-inline-start-width: calc(var(--_has-left-radius) * var(--line-thickness));
 	position: absolute;
 	inset: auto 0 0;
 	block-size: var(--radius);
@@ -156,14 +169,14 @@ canvas#foreground-canvas {
 	--mask:
 		conic-gradient(
 			at left var(--_left-radius) top 0,
-			white 210grad,
-			transparent 290grad
+			white 250grad,
+			transparent 300grad
 		) 0 0 / 100% 100% no-repeat border-box,
 
 		conic-gradient(
 			at right var(--radius) top 0,
-			transparent 110grad,
-			white 190grad
+			transparent 100grad,
+			white 150grad
 		) 0 0 / 100% 100% no-repeat border-box,
 
 		linear-gradient(white, white) no-repeat padding-box,
@@ -481,7 +494,7 @@ canvas#foreground-canvas {
 	--noise-mask: url('data:image/svg+xml, \
 		<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"> \
 			<filter id="noise" x="0%" y="0%" width="100%" height="100%"> \
-				<feTurbulence type="fractalNoise" baseFrequency="0.99" /> \
+				<feTurbulence type="fractalNoise" baseFrequency="1.3" /> \
 			</filter> \
 			<rect x="0%" y="0%" width="100%" height="100%" filter="url(%23noise)" /> \
 		</svg> \

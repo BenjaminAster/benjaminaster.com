@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="loading">
 
 <head>
 	<meta charset="UTF-8" />
@@ -10,26 +10,25 @@
 	<meta name="repository" content="https://github.com/BenjaminAster/benjaminaster.com" />
 	<meta property="og:image" content="https://benjaminaster.com/media/favicon.png" />
 
-	<base href="/home/" />
-
 	<title>Benjamin Aster</title>
-
+	<base href="/home/" />
 	<link rel="icon" href="/media/favicon.svg" type="image/svg+xml" sizes="any" />
 	<link rel="icon" href="/media/favicon.png" type="image/png" sizes="144x144" />
-
 	<link rel="canonical" href="https://benjaminaster.com/" />
 
 	<link rel="stylesheet" href="./style.css" />
-
-	<script type="module" src="./script.js"></script>
-
 	<link rel="preload" as="image" crossorigin href="./assets/twitter.svg" />
 	<link rel="preload" as="image" crossorigin href="./assets/github.svg" />
 	<link rel="preload" as="image" crossorigin href="./assets/codepen.svg" />
 	<link rel="preload" as="image" crossorigin href="./assets/envelope.svg" />
+
+	<script type="module" src="./script.js"></script>
 </head>
 
 <body>
+	<!-- original source: https://www.urlaubstracker.de/wp-content/uploads/2016/12/salzburg_winter_nacht.jpg -->
+	<img src="./assets/salzburg_winter_nacht.webp" id="background-image" alt="Salzburg in winter" />
+
 	<main>
 		<p hidden id="browser-warning" data-nosnippet>
 			⚠&#xFE0E; <br />

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en" class="loading"><head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 	<meta name="robots" content="all">
@@ -8,26 +8,25 @@
 	<meta name="repository" content="https://github.com/BenjaminAster/benjaminaster.com">
 	<meta property="og:image" content="https://benjaminaster.com/media/favicon.png">
 
-	<base href="/home/">
-
 	<title>Benjamin Aster</title>
-
+	<base href="/home/">
 	<link rel="icon" href="/media/favicon.svg" type="image/svg+xml" sizes="any">
 	<link rel="icon" href="/media/favicon.png" type="image/png" sizes="144x144">
-
 	<link rel="canonical" href="https://benjaminaster.com/">
 
 	<link rel="stylesheet" href="./style.css">
-
-	<script type="module" src="./script.js"></script>
-
 	<link rel="preload" as="image" crossorigin="" href="./assets/twitter.svg">
 	<link rel="preload" as="image" crossorigin="" href="./assets/github.svg">
 	<link rel="preload" as="image" crossorigin="" href="./assets/codepen.svg">
 	<link rel="preload" as="image" crossorigin="" href="./assets/envelope.svg">
+
+	<script type="module" src="./script.js"></script>
 </head>
 
 <body>
+	<!-- original source: https://www.urlaubstracker.de/wp-content/uploads/2016/12/salzburg_winter_nacht.jpg -->
+	<img src="./assets/salzburg_winter_nacht.webp" id="background-image" alt="Salzburg in winter">
+
 	<main>
 		<p hidden="" id="browser-warning" data-nosnippet="">
 			⚠︎ <br>
@@ -87,6 +86,15 @@
 				</template>
 			<li>
 						<div class="container awesome">
+							<a class="project-link" href="/triangle-pattern/">
+								<img src="https://benjaminaster.com/triangle-pattern/assets/icon.svg" alt="icon of Triangle pattern">
+								<h3 class="title">Triangle pattern</h3>
+								<p class="description">An interactive triangle pattern art</p>
+							</a>
+							<a class="repository" title="View on GitHub" href="https://github.com/BenjaminAster/triangle-pattern"></a>
+						</div>
+					</li><li>
+						<div class="container awesome">
 							<a class="project-link" href="/ray-tracer/">
 								<img src="https://benjaminaster.com/ray-tracer/assets/icon.svg" alt="icon of WebGPU Ray Tracer">
 								<h3 class="title">WebGPU Ray Tracer</h3>
@@ -97,7 +105,7 @@
 					</li><li>
 						<div class="container awesome">
 							<a class="project-link" href="/pamm/">
-								<img src="https://benjaminaster.com/pamm/assets/icon.png" alt="icon of PAMM">
+								<img src="https://benjaminaster.com/pamm/assets/icon.svg" alt="icon of PAMM">
 								<h3 class="title">PAMM</h3>
 								<p class="description">Pretty Awesome Math Markup – A user-friendly LaTeX alternative with a live editor</p>
 							</a>

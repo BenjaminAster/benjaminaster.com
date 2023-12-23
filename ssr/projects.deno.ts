@@ -6,6 +6,9 @@ deno run --unstable --allow-net --allow-read --allow-write=.. ./ssr.deno.ts
 
 const projects: Record<string, string>[] = [
 	{
+		url: "/triangle-pattern/",
+	},
+	{
 		url: "/ray-tracer/",
 	},
 	{
