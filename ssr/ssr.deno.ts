@@ -9,7 +9,7 @@ import { DOMParser } from "./domparser";
 import projects from "./projects.deno.ts";
 
 /* 
-deno run --unstable --allow-net --allow-read --allow-write=.. ssr/ssr.deno.ts
+deno run --allow-net --allow-read --allow-write=.. ssr/ssr.deno.ts
 */
 
 const document = new DOMParser().parseFromString(
@@ -54,15 +54,15 @@ await Promise.all(projects.map(async (project: Record<string, string>, index: nu
 	}
 
 	const image: string = project.image ?? (() => {
-		const href = htmlDocument!.querySelector("link[rel=icon]")?.getAttribute("href");
+		const href = (htmlDocument.querySelector("link[rel='aster:icon-dark']") || htmlDocument.querySelector("link[rel=icon]"))?.getAttribute("href");
 		if (!href) return;
-		const base = htmlDocument!.querySelector("base")?.getAttribute("href") ?? "./";
+		const base = htmlDocument.querySelector("base")?.getAttribute("href") ?? "./";
 		return new URL(href, new URL(base, new URL(project.url, "https://benjaminaster.com/"))).href;
 	})();
 
 	const title: string = project.title ?? htmlDocument!.querySelector("title")?.textContent;
 
-	const repository: string = project.repository ?? htmlDocument?.querySelector("meta[name=repository]")?.getAttribute("content");
+	const repository: string = project.repository ?? htmlDocument?.querySelector("link[rel=code-repository]")?.getAttribute("href");
 
 	const description: string = project.description ?? htmlDocument!.querySelector("meta[name=description]")?.getAttribute("content");
 
@@ -78,6 +78,11 @@ await Promise.all(projects.map(async (project: Record<string, string>, index: nu
 	card.querySelector("img")!.setAttribute("src", image);
 	card.querySelector("img")!.setAttribute("alt", `icon of ${title}`);
 	card.querySelector(".title")!.textContent = title;
+	if (project.url.startsWith("/")) {
+		card.querySelector("a").setAttribute("style", `view-transition-name: ${project.url.split("/").at(-2)}-body;`);
+		// card.querySelector(".title")!.setAttribute("style", `view-transition-name: ${project.url.split("/").at(-2)}-title;`);
+		// card.querySelector("img")!.setAttribute("style", `view-transition-name: ${project.url.split("/").at(-2)}-icon;`);
+	}
 	card.querySelector(".description")!.textContent = description;
 }));
 

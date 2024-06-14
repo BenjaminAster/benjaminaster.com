@@ -1,5 +1,5 @@
 {
 	"imports": {
-		"./domparser": "https://deno.land/x/deno_dom@v0.1.43/deno-dom-wasm.ts",
+		"./domparser": "https://deno.land/x/deno_dom@v0.1.46/deno-dom-wasm.ts",
 	}
 }

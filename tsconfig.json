@@ -2,8 +2,14 @@
 	"compilerOptions": {
 		"module": "ESNext",
 		"target": "ESNext",
-		"allowImportingTsExtensions": true,
-		"noEmit": true,
+		"moduleResolution": "Bundler",
+		"moduleDetection": "force",
+		"allowJs": true,
 		"checkJs": true,
-	}
+		"noEmit": true,
+		"allowImportingTsExtensions": true,
+		"allowArbitraryExtensions": true,
+		"lib": ["ESNext", "DOM", "DOM.Iterable"],
+		"types": ["better-typescript"],
+	},
 }

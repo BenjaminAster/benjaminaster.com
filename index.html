@@ -3,9 +3,10 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 	<meta name="robots" content="all">
-	<meta name="description" content="I'm an Austrian nerd doing silly things on the computer.">
+	<meta name="description" content="The personal website of Benjamin Aster, an Austrian nerd doing silly things on the computer.">
+	<meta property="og:description" content="The personal website of Benjamin Aster, an Austrian nerd doing silly things on the computer.">
 	<meta name="author" content="Benjamin Aster">
-	<meta name="repository" content="https://github.com/BenjaminAster/benjaminaster.com">
+	<link rel="code-repository" href="https://github.com/BenjaminAster/benjaminaster.com">
 	<meta property="og:image" content="https://benjaminaster.com/media/favicon.png">
 
 	<title>Benjamin Aster</title>
@@ -24,7 +25,7 @@
 </head>
 
 <body>
-	<!-- original source: https://www.urlaubstracker.de/wp-content/uploads/2016/12/salzburg_winter_nacht.jpg -->
+	<!-- original source: https://www.flickr.com/photos/151640904@N03/48671632338 -->
 	<img src="./assets/salzburg_winter_nacht.webp" id="background-image" alt="Salzburg in winter">
 
 	<main>
@@ -35,10 +36,10 @@
 		</p>
 
 		<section aria-label="About me" class="about-me awesome">
-			<img src="/media/favicon.svg" alt="icon">
-			
+			<img id="logo" src="/media/favicon.svg" alt="logo">
+
 			<h1>Hi, I'm Benjamin Aster.</h1>
-			
+
 			<p>
 				I'm an Austrian nerd doing silly things on the computer.
 			</p>
@@ -86,7 +87,16 @@
 				</template>
 			<li>
 						<div class="container awesome">
-							<a class="project-link" href="/triangle-pattern/">
+							<a class="project-link" href="/fingerprint/" style="view-transition-name: fingerprint-body;">
+								<img src="https://benjaminaster.com/fingerprint/assets/icon-dark.svg" alt="icon of Fingerprint">
+								<h3 class="title">Fingerprint</h3>
+								<p class="description">A website that shows you fingerprinting vectors of your browser.</p>
+							</a>
+							<a class="repository" title="View on GitHub" href="https://github.com/BenjaminAster/fingerprint"></a>
+						</div>
+					</li><li>
+						<div class="container awesome">
+							<a class="project-link" href="/triangle-pattern/" style="view-transition-name: triangle-pattern-body;">
 								<img src="https://benjaminaster.com/triangle-pattern/assets/icon.svg" alt="icon of Triangle pattern">
 								<h3 class="title">Triangle pattern</h3>
 								<p class="description">An interactive triangle pattern art</p>
@@ -95,8 +105,8 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/ray-tracer/">
-								<img src="https://benjaminaster.com/ray-tracer/assets/icon.svg" alt="icon of WebGPU Ray Tracer">
+							<a class="project-link" href="/ray-tracer/" style="view-transition-name: ray-tracer-body;">
+								<img src="https://benjaminaster.com/ray-tracer/assets/icon-dark.svg" alt="icon of WebGPU Ray Tracer">
 								<h3 class="title">WebGPU Ray Tracer</h3>
 								<p class="description">A ray tracer made with WebGPU</p>
 							</a>
@@ -104,7 +114,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/pamm/">
+							<a class="project-link" href="/pamm/" style="view-transition-name: pamm-body;">
 								<img src="https://benjaminaster.com/pamm/assets/icon.svg" alt="icon of PAMM">
 								<h3 class="title">PAMM</h3>
 								<p class="description">Pretty Awesome Math Markup – A user-friendly LaTeX alternative with a live editor</p>
@@ -113,8 +123,8 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/webindex/">
-								<img src="https://benjaminaster.com/webindex/assets/icon.svg" alt="icon of Index of web-related technical information">
+							<a class="project-link" href="/webindex/" style="view-transition-name: webindex-body;">
+								<img src="https://benjaminaster.com/webindex/assets/icon-dark.svg" alt="icon of Index of web-related technical information">
 								<h3 class="title">Index of web-related technical information</h3>
 								<p class="description">An index of web-related specifications, CSS properties, JavaScript interfaces, etc.</p>
 							</a>
@@ -122,7 +132,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/web-features/">
+							<a class="project-link" href="/web-features/" style="view-transition-name: web-features-body;">
 								<img src="https://benjaminaster.com/web-features/assets/icon.svg" alt="icon of Web features">
 								<h3 class="title">Web features</h3>
 								<p class="description">An overview of (mostly new) web features that are not yet fully supported in all three browser engines.</p>
@@ -140,8 +150,8 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/css-canvas/">
-								<img src="https://benjaminaster.com/css-canvas/assets/icon.svg" alt="icon of CSS Drawing Canvas">
+							<a class="project-link" href="/css-canvas/" style="view-transition-name: css-canvas-body;">
+								<img src="https://benjaminaster.com/css-canvas/assets/icon-dark.svg" alt="icon of CSS Drawing Canvas">
 								<h3 class="title">CSS Drawing Canvas</h3>
 								<p class="description">A drawing canvas made with pure HTML &amp; CSS – no JavaScript.</p>
 							</a>
@@ -149,8 +159,8 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/reflexive-view-source/">
-								<img src="/reflexive-view-source/assets/icon.svg" alt="icon of Reflexive view-source">
+							<a class="project-link" href="/reflexive-view-source/" style="view-transition-name: reflexive-view-source-body;">
+								<img src="https://benjaminaster.com/reflexive-view-source/assets/icon.svg" alt="icon of Reflexive view-source">
 								<h3 class="title">Reflexive view-source</h3>
 								<p class="description">A website that displays its own view-source page.</p>
 							</a>
@@ -158,7 +168,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/css-minecraft/">
+							<a class="project-link" href="/css-minecraft/" style="view-transition-name: css-minecraft-body;">
 								<img src="https://benjaminaster.com/css-minecraft/assets/icon.png" alt="icon of CSS Minecraft">
 								<h3 class="title">CSS Minecraft</h3>
 								<p class="description">A Minecraft clone made with pure HTML &amp; CSS – no JavaScript.</p>
@@ -167,7 +177,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/2d-css-minecraft/">
+							<a class="project-link" href="/2d-css-minecraft/" style="view-transition-name: 2d-css-minecraft-body;">
 								<img src="https://benjaminaster.com/2d-css-minecraft/assets/icon.png" alt="icon of 2D CSS Minecraft">
 								<h3 class="title">2D CSS Minecraft</h3>
 								<p class="description">A 2D Minecraft clone made with pure HTML &amp; CSS – no JavaScript.</p>
@@ -176,8 +186,8 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/pattern-generator/">
-								<img src="https://benjaminaster.com/pattern-generator/assets/icon.svg" alt="icon of Pattern Generator">
+							<a class="project-link" href="/pattern-generator/" style="view-transition-name: pattern-generator-body;">
+								<img src="https://benjaminaster.com/pattern-generator/assets/icon-dark.svg" alt="icon of Pattern Generator">
 								<h3 class="title">Pattern Generator</h3>
 								<p class="description">Generate random recursive patterns.</p>
 							</a>
@@ -203,7 +213,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/webgpu-mandelbrot/">
+							<a class="project-link" href="/webgpu-mandelbrot/" style="view-transition-name: webgpu-mandelbrot-body;">
 								<img src="https://benjaminaster.com/webgpu-mandelbrot/assets/icon.webp" alt="icon of WebGPU Mandelbrot">
 								<h3 class="title">WebGPU Mandelbrot</h3>
 								<p class="description">A GPU accelerated Mandelbrot viewer made using the new WebGPU API.</p>
@@ -212,8 +222,8 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/icons/">
-								<img src="https://benjaminaster.com/icons/assets/icon.svg" alt="icon of Custom icons">
+							<a class="project-link" href="/icons/" style="view-transition-name: icons-body;">
+								<img src="https://benjaminaster.com/icons/assets/icon-dark.svg" alt="icon of Custom icons">
 								<h3 class="title">Custom icons</h3>
 								<p class="description">Choose your own icons from various different icon sets and generate a CSS file with only those icons as inlined data-URIs.</p>
 							</a>
@@ -221,7 +231,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/geoquiz/">
+							<a class="project-link" href="/geoquiz/" style="view-transition-name: geoquiz-body;">
 								<img src="https://benjaminaster.com/geoquiz/icon/icon.png" alt="icon of GeoQuiz">
 								<h3 class="title">GeoQuiz</h3>
 								<p class="description">A quiz about the countries of the world.</p>
@@ -230,8 +240,8 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/editor/">
-								<img src="https://benjaminaster.com/editor/icon.svg" alt="icon of Live HTML Editor">
+							<a class="project-link" href="/editor/" style="view-transition-name: editor-body;">
+								<img src="https://benjaminaster.com/editor/assets/icon-dark.svg" alt="icon of Live HTML Editor">
 								<h3 class="title">Live HTML Editor</h3>
 								<p class="description">A simple HTML, CSS and JavaScript editor.</p>
 							</a>
@@ -239,7 +249,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/svg2image/">
+							<a class="project-link" href="/svg2image/" style="view-transition-name: svg2image-body;">
 								<img src="https://benjaminaster.com/svg2image/icon/icon.svg" alt="icon of SVG to image">
 								<h3 class="title">SVG to image</h3>
 								<p class="description">A tool that converts SVGs to images. Useful for creating PWA icons from SVGs.</p>
@@ -248,7 +258,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/notepad/">
+							<a class="project-link" href="/notepad/" style="view-transition-name: notepad-body;">
 								<img src="https://benjaminaster.com/notepad/icon/icon.svg" alt="icon of Notepad">
 								<h3 class="title">Notepad</h3>
 								<p class="description">A simple text notepad application.</p>
@@ -257,7 +267,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/watertyper/">
+							<a class="project-link" href="/watertyper/" style="view-transition-name: watertyper-body;">
 								<img src="data:image/svg+xml,<svg viewBox='2 -15 19 19' xmlns='http://www.w3.org/2000/svg'><text>%F0%9F%92%A7</text></svg>" alt="icon of Watertyper">
 								<h3 class="title">Watertyper</h3>
 								<p class="description">A minimalistic typing test.</p>
@@ -266,7 +276,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/colors/">
+							<a class="project-link" href="/colors/" style="view-transition-name: colors-body;">
 								<img src="https://benjaminaster.com/colors/icon.svg" alt="icon of CSS Named Colors">
 								<h3 class="title">CSS Named Colors</h3>
 								<p class="description">A simple overview of all 141 CSS colors.</p>
@@ -275,7 +285,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/clock/">
+							<a class="project-link" href="/clock/" style="view-transition-name: clock-body;">
 								<img src="https://benjaminaster.com/clock/icon/icon.svg" alt="icon of Clock">
 								<h3 class="title">Clock</h3>
 								<p class="description">A simple clock that shows the current time with seconds.</p>
@@ -284,8 +294,8 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/tiny-snake/">
-								<img src="/tiny-snake/icon.svg" alt="icon of Tiny Snake">
+							<a class="project-link" href="/tiny-snake/" style="view-transition-name: tiny-snake-body;">
+								<img src="/tiny-snake/assets/icon-dark.svg" alt="icon of Tiny Snake">
 								<h3 class="title">Tiny Snake</h3>
 								<p class="description">A snake game in less than 400 characters of HTML &amp; JavaScript.</p>
 							</a>
@@ -293,7 +303,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/unicode/">
+							<a class="project-link" href="/unicode/" style="view-transition-name: unicode-body;">
 								<img src="https://upload.wikimedia.org/wikipedia/commons/0/09/New_Unicode_logo.svg" alt="icon of Unicode Characters">
 								<h3 class="title">Unicode Characters</h3>
 								<p class="description">A simple overview of all Unicode characters.</p>
@@ -302,8 +312,8 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/3d-css-calculator/">
-								<img src="https://benjaminaster.com/3d-css-calculator/icon.svg" alt="icon of 3D Binary CSS Calculator">
+							<a class="project-link" href="/3d-css-calculator/" style="view-transition-name: 3d-css-calculator-body;">
+								<img src="https://benjaminaster.com/3d-css-calculator/assets/icon-dark.svg" alt="icon of 3D Binary CSS Calculator">
 								<h3 class="title">3D Binary CSS Calculator</h3>
 								<p class="description">A 3D binary calculator that works completely without JavaScript.</p>
 							</a>
@@ -311,7 +321,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/memorize-pi-digits/">
+							<a class="project-link" href="/memorize-pi-digits/" style="view-transition-name: memorize-pi-digits-body;">
 								<img src="https://benjaminaster.com/memorize-pi-digits/icon.svg" alt="icon of Memorize Pi Digits">
 								<h3 class="title">Memorize Pi Digits</h3>
 								<p class="description">A tool that helps you memorize the digits of pi.</p>
@@ -320,7 +330,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/browser/">
+							<a class="project-link" href="/browser/" style="view-transition-name: browser-body;">
 								<img src="https://benjaminaster.com/browser/icon.svg" alt="icon of Browser Version">
 								<h3 class="title">Browser Version</h3>
 								<p class="description">A website that shows you the current version of your browser.</p>
@@ -338,7 +348,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/html-entities/">
+							<a class="project-link" href="/html-entities/" style="view-transition-name: html-entities-body;">
 								<img src="https://benjaminaster.com/html-entities/icon.svg" alt="icon of HTML entities">
 								<h3 class="title">HTML entities</h3>
 								<p class="description">A list of all HTML entities.</p>
@@ -347,7 +357,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/copy-quizlet/">
+							<a class="project-link" href="/copy-quizlet/" style="view-transition-name: copy-quizlet-body;">
 								<img src="https://benjaminaster.com/media/Copy%20Quizlet%20Learnset%20Logo%207.png" alt="icon of Quizlet Learnset Copier">
 								<h3 class="title">Quizlet Learnset Copier</h3>
 								<p class="description">A tool that helps you import, edit and export vocabulary from and to Quizlet and Anki.</p>
@@ -356,7 +366,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/yt-ad-to-link/">
+							<a class="project-link" href="/yt-ad-to-link/" style="view-transition-name: yt-ad-to-link-body;">
 								<img src="https://benjaminaster.com/media/youtube-link-7.png" alt="icon of YouTube ad to video link">
 								<h3 class="title">YouTube ad to video link</h3>
 								<p class="description">A tool that helps me collect unlisted YouTube ad videos.</p>
@@ -365,7 +375,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/2048/">
+							<a class="project-link" href="/2048/" style="view-transition-name: 2048-body;">
 								<img src="https://benjaminaster.com/2048/icon.svg" alt="icon of 2048">
 								<h3 class="title">2048</h3>
 								<p class="description">The 2048 game.</p>
@@ -374,8 +384,8 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/game-of-life/">
-								<img src="https://benjaminaster.com/game-of-life/icon.svg" alt="icon of Conway's Game of Life">
+							<a class="project-link" href="/game-of-life/" style="view-transition-name: game-of-life-body;">
+								<img src="https://benjaminaster.com/game-of-life/assets/icon-dark.svg" alt="icon of Conway's Game of Life">
 								<h3 class="title">Conway's Game of Life</h3>
 								<p class="description">Conway's Game of Life.</p>
 							</a>
@@ -392,7 +402,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/mandelbrot/">
+							<a class="project-link" href="/mandelbrot/" style="view-transition-name: mandelbrot-body;">
 								<img src="https://benjaminaster.com/mandelbrot/icon.png" alt="icon of Mandelbrot Viewer">
 								<h3 class="title">Mandelbrot Viewer</h3>
 								<p class="description">A simple mandelbrot viewer.</p>
@@ -401,7 +411,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/translate/">
+							<a class="project-link" href="/translate/" style="view-transition-name: translate-body;">
 								<img src="https://benjaminaster.com/translate/_/icon.svg" alt="icon of Translate">
 								<h3 class="title">Translate</h3>
 								<p class="description">A translation website based on LibreTranslate.</p>
@@ -410,7 +420,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/tetris/">
+							<a class="project-link" href="/tetris/" style="view-transition-name: tetris-body;">
 								<img src="https://benjaminaster.com/tetris/icon.svg" alt="icon of Tetris">
 								<h3 class="title">Tetris</h3>
 								<p class="description">The tetris game.</p>
@@ -419,7 +429,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/domino-builder/">
+							<a class="project-link" href="/domino-builder/" style="view-transition-name: domino-builder-body;">
 								<img src="https://benjaminaster.com/domino-builder/icon.svg" alt="icon of Domino builder">
 								<h3 class="title">Domino builder</h3>
 								<p class="description">A tool that you can use to build 3D domino structures.</p>
@@ -428,7 +438,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/pascal-triangle/">
+							<a class="project-link" href="/pascal-triangle/" style="view-transition-name: pascal-triangle-body;">
 								<img src="https://benjaminaster.com/pascal-triangle/icon.svg" alt="icon of Pascal triangle visualization">
 								<h3 class="title">Pascal triangle visualization</h3>
 								<p class="description">A tool that lets you explore the pascal triangle with all the numbers modulo a value.</p>
@@ -437,8 +447,8 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/take-away-triangles/">
-								<img src="https://benjaminaster.com/take-away-triangles/icon.svg" alt="icon of MPMP 9: Take away triangles">
+							<a class="project-link" href="/take-away-triangles/" style="view-transition-name: take-away-triangles-body;">
+								<img src="https://benjaminaster.com/take-away-triangles/assets/icon-dark.svg" alt="icon of MPMP 9: Take away triangles">
 								<h3 class="title">MPMP 9: Take away triangles</h3>
 								<p class="description">A visualization of triangles I created for Matt Parker's Math Pluzzle #9: Take-away triangles.</p>
 							</a>
@@ -446,8 +456,8 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/anaglyph-cube/">
-								<img src="https://benjaminaster.com/anaglyph-cube/icon.svg" alt="icon of Red-Cyan-3D Cube">
+							<a class="project-link" href="/anaglyph-cube/" style="view-transition-name: anaglyph-cube-body;">
+								<img src="https://benjaminaster.com/anaglyph-cube/assets/icon-dark.svg" alt="icon of Red-Cyan-3D Cube">
 								<h3 class="title">Red-Cyan-3D Cube</h3>
 								<p class="description">A red-cyan anaglyph spinning cube.</p>
 							</a>
@@ -455,8 +465,8 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/self-loading-html/">
-								<img src="https://benjaminaster.com/self-loading-html/icon.svg" alt="icon of Self-loading HTML">
+							<a class="project-link" href="/self-loading-html/" style="view-transition-name: self-loading-html-body;">
+								<img src="https://benjaminaster.com/self-loading-html/assets/icon-dark.svg" alt="icon of Self-loading HTML">
 								<h3 class="title">Self-loading HTML</h3>
 								<p class="description">An HTML file that is also its own CSS and JavaScript.</p>
 							</a>
@@ -464,8 +474,8 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/unblock-me/">
-								<img src="https://benjaminaster.com/unblock-me/icon.svg" alt="icon of Unblock Me">
+							<a class="project-link" href="/unblock-me/" style="view-transition-name: unblock-me-body;">
+								<img src="https://benjaminaster.com/unblock-me/assets/icon-dark.svg" alt="icon of Unblock Me">
 								<h3 class="title">Unblock Me</h3>
 								<p class="description">The Unblock Me game. A puzzle game where you unblock a red block by sliding the other blocks out of its way.</p>
 							</a>
@@ -473,7 +483,7 @@
 						</div>
 					</li><li>
 						<div class="container awesome">
-							<a class="project-link" href="/youtube-thumbnail/">
+							<a class="project-link" href="/youtube-thumbnail/" style="view-transition-name: youtube-thumbnail-body;">
 								<img src="https://benjaminaster.com/youtube-thumbnail/_/logo.png" alt="icon of YouTube Thumbnail Generator">
 								<h3 class="title">YouTube Thumbnail Generator</h3>
 								<p class="description">Get the thumbnail of a YouTube video</p>

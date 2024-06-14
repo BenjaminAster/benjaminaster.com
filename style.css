@@ -179,9 +179,9 @@ button, a {
 			white 150grad
 		) 0 0 / 100% 100% no-repeat border-box,
 
-		linear-gradient(white, white) no-repeat padding-box,
+		linear-gradient(white 0 0) no-repeat padding-box,
 
-		linear-gradient(white, white) no-repeat border-box;
+		linear-gradient(white 0 0) no-repeat border-box;
 	-webkit-mask: var(--mask);
 	mask: var(--mask);
 
@@ -451,31 +451,33 @@ button, a {
 	color: white;
 }
 
-::-webkit-scrollbar {
-	inline-size: 11px;
-}
+@media (hover) {
+	::-webkit-scrollbar {
+		inline-size: 12px;
+	}
 
-::-webkit-scrollbar-thumb {
-	background-image: linear-gradient(
-		to bottom,
-		var(--scrollbar-start-color),
-		var(--scrollbar-end-color)
-	);
-}
+	::-webkit-scrollbar-button, ::-webkit-scrollbar-thumb {
+		block-size: 12px;
+		border: 3px solid transparent;
+		border-radius: 6px;
+		background-clip: padding-box;
+	}
 
-::-webkit-scrollbar-button:start {
-	background-color: var(--scrollbar-start-color);
-}
+	::-webkit-scrollbar-thumb {
+		background-image: linear-gradient(
+			to bottom,
+			var(--scrollbar-start-color),
+			var(--scrollbar-end-color)
+		);
+	}
 
-::-webkit-scrollbar-button:end {
-	background-color: var(--scrollbar-end-color);
-}
+	::-webkit-scrollbar-button:start {
+		background-color: var(--scrollbar-start-color);
+	}
 
-::-webkit-scrollbar-button, ::-webkit-scrollbar-thumb {
-	block-size: 11px;
-	border: 3px solid transparent;
-	border-radius: 6px;
-	background-clip: padding-box;
+	::-webkit-scrollbar-button:end {
+		background-color: var(--scrollbar-end-color);
+	}
 }
 
 @media (hover: none) {
@@ -489,6 +491,15 @@ button, a {
 		display: none;
 	}
 }
+
+@view-transition {
+	navigation: auto;
+	types: page-navigation;
+}
+
+/* :root:active-view-transition-type(page-navigation)::view-transition-group(*) {
+	animation-duration: 10s;
+} */
 
 :root {
 	--noise-mask: url('data:image/svg+xml, \

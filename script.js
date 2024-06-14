@@ -1,6 +1,4 @@
 
-/// <reference types="better-typescript" />
-
 if (location.pathname === "/home/") {
 	history.replaceState(null, "", "/");
 }
@@ -19,6 +17,14 @@ document.querySelector("button.email").addEventListener("click", function () {
 	const removeLoading = () => document.documentElement.classList.remove("loading");
 	if (img.complete) removeLoading();
 	else img.addEventListener("load", removeLoading);
+}
+
+{
+	const logo = document.querySelector("img#logo");
+	logo.addEventListener("dblclick", () => {
+		if (document.fullscreenElement) document.exitFullscreen();
+		else document.documentElement.requestFullscreen();
+	});
 }
 
 export { };
