@@ -4,6 +4,7 @@
 	font-family: system-ui, sans-serif;
 	overflow-wrap: break-word;
 	line-height: 1.5;
+	touch-action: manipulation;
 
 	-webkit-text-size-adjust: none;
 	text-size-adjust: none;
@@ -207,6 +208,7 @@ button, a {
 	grid-area: icon;
 	inline-size: 4rem;
 	aspect-ratio: 1;
+	touch-action: pan-y pinch-zoom;
 }
 
 .about-me > h1 {

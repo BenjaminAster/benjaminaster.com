@@ -25,6 +25,21 @@ document.querySelector("button.email").addEventListener("click", function () {
 		if (document.fullscreenElement) document.exitFullscreen();
 		else document.documentElement.requestFullscreen();
 	});
+	{
+		let pointerDownX = 0;
+		let dragging = false;
+		logo.addEventListener("pointerdown", ({ clientX }) => {
+			pointerDownX = clientX;
+			dragging = true;
+		});
+		document.addEventListener("pointerup", ({ clientX }) => {
+			if (dragging && clientX > pointerDownX + 200) location.assign("/goto/");
+			dragging = false;
+		});
+		document.addEventListener("touchend", () => {
+			dragging = false;
+		});
+	}
 }
 
 export { };
